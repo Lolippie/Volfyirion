@@ -1,0 +1,256 @@
+/*	name, cost, activation, effect, ressource (coin, attack, wisdom), color (red, magenta, cyan, grey)
+	Card  = new Card("", , , , , , , Card.color.);
+	Card xxx_0 = new Card("Xxx", 0, NULL, NULL, 0, 0, 0, Card.color.grey);
+	convention nommage :
+		tout en minuscule
+		une espace = un underscore
+		une apostrophe = rien
+			Telron's Analysis
+			devient
+			telrons_analysis
+	Les cartes sont toutes en doubles,
+		sauf pour Prospector (x16) et les cartes ayant un prix supérieur à 5 qui sont toutes uniques,
+		sauf pour la merveille Emerald Horn qui est en double avec un prix de 6
+
+	Activations :
+		a_sacrifice : envoie la carte au cimetière (choix du joueur)
+		a_combo_X : si le joueur a la couleur mentionné dans le combo dans sa main ou sur son terrain (un defendeur ou batiment)
+			à l'exception de la carte en question, active l'effet
+
+	Effets :
+        e_bonus_X : ajoute la/les ressource(s) au compteur du joueur pour ce tour,
+            réactivable tous les tours si la condition d'activation est toujours satisfaite
+        e_card_draw_X : le joueur pioche une/deux carte(s)
+        e_card_destruct : défausse une carte (si activé par un combo, au choix)
+        e_bat_destruct : détruit un batiment adverse
+        e_kill_defender : tue un guardien adverse
+        e_move_volfyirion : bouge Volfyirion (pas sur ta propre ville!)
+*/
+
+// #############################################
+// ###										 ###
+// ###			  Cartes de Début			 ###
+// ###										 ###
+// #############################################
+
+	// Prospector
+		Normal prospector_1 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_2 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_3 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_4 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_5 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_6 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_7 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_8 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_9 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_10 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_11 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_12 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_13 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_14 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_15 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+		Normal prospector_16 = new Card("Prospector", 0, NULL, NULL, 1, 0, 0, Card.color.grey);
+	// Captain
+		Normal captain_1 = new Card("Captain", 0, NULL, NULL, 1, 3, 0, Card.color.grey);
+		Normal captain_2 = new Card("Captain", 0, NULL, NULL, 1, 3, 0, Card.color.grey);
+	// Diviner
+		Normal diviner_1 = new Card("Diviner", 0, NULL, NULL, 1, 0, 3, Card.color.grey);
+		Normal diviner_2 = new Card("Diviner", 0, NULL, NULL, 1, 0, 3, Card.color.grey);
+
+// #############################################
+// ###										 ###
+// ###			 Pioche Principale			 ###
+// ###	  Normales - Gardiens - Batiments	 ###
+// ###										 ###
+// #############################################
+
+	// #######################
+	// ### Cartes Normales ###
+	// #######################
+
+		// Barter
+			Normal barter_1 = new Card("Barter", 1, a_sacrifice, e_bonus_wisdom_1, 1, 0, 0, Card.color.cyan);
+			Normal barter_2 = new Card("Barter", 1, a_sacrifice, e_bonus_wisdom_1, 1, 0, 0, Card.color.cyan);
+		// Stab
+			Normal stab_1 = new Card("Stab", 1, a_sacrifice, e_card_draw_1, 0, 2, 0, Card.color.red);
+			Normal stab_2 = new Card("Stab", 1, a_sacrifice, e_card_draw_1, 0, 2, 0, Card.color.red);
+		// Qoam Ritual
+			Normal qoam_ritual_1 = new Card("Qoam Ritual", 1, a_sacrifice, e_card_destruct, 1, 0, 0, Card.color.magenta);
+			Normal qoam_ritual_2 = new Card("Qoam Ritual", 1, a_sacrifice, e_card_destruct, 1, 0, 0, Card.color.magenta);
+		// Worthy Trade
+			Normal worthy_tarde_1 = new Card("Worthy Trade", 2, a_sacrifice, e_card_destruct, 1, 0, 1, Card.color.cyan);
+			Normal worthy_tarde_2 = new Card("Worthy Trade", 2, a_sacrifice, e_card_destruct, 1, 0, 1, Card.color.cyan);
+		// Hidden Cache
+			Normal hidden_cache_1 = new Card("Hidden Cache", 2, a_combo_magenta, e_bonus_attack_2, 0, 0, 2, Card.color_magenta);
+			Normal hidden_cache_2 = new Card("Hidden Cache", 2, a_combo_magenta, e_bonus_attack_2, 0, 0, 2, Card.color_magenta);
+		// Saboteur
+			Normal saboteur_1 = new Card("Saboteur", 3, a_saboteur, e_saboteur, 1, 0, 0, Card.color.cyan);
+			Normal saboteur_2 = new Card("Saboteur", 3, a_saboteur, e_saboteur, 1, 0, 0, Card.color.cyan);
+		// Telron's Analysis
+			Normal telrons_analysis_1 = new Card("Telron's Analysis", 3, a_combo_cyan, e_card_draw_1, 2, 0, 1, Card.color.cyan);
+			Normal telrons_analysis_2 = new Card("Telron's Analysis", 3, a_combo_cyan, e_card_draw_1, 2, 0, 1, Card.color.cyan);
+		// Decisive Strike
+			Normal decisive_strike_1 = new Card("Decisive Strike", 3, a_combo_red, e_bonus_attack_2, 0, 2, 0, Card.color.red);
+			Normal decisive_strike_2 = new Card("Decisive Strike", 3, a_combo_red, e_bonus_attack_2, 0, 2, 0, Card.color.red);
+		// Suicide Mission
+			Normal suicide_mission_1 = new Card("Suicide Mission", 3, a_sacrifice, e_bat_destroy, 0, 2, 0, Card.color.red);
+			Normal suicide_mission_2 = new Card("Suicide Mission", 3, a_sacrifice, e_bat_destroy, 0, 2, 0, Card.color.red);
+		// Celethe's Law
+			Normal celethes_law_1 = new Card("Celethes Law", 3, a_combo_magenta, e_card_destruct, 2, 0, 2, Card.color.magenta);
+			Normal celethes_law_2 = new Card("Celethes Law", 3, a_combo_magenta, e_card_destruct, 2, 0, 2, Card.color.magenta);
+		// Harness Qoam
+			Normal harness_qoam_1 = new Card("Harness Qoam", 4, a_combo_cyan_red e_bonus_attack_2_wisdom_2, 2, 1, 1, Card.color.cyan);
+			Normal harness_qoam_2 = new Card("Harness Qoam", 4, a_combo_cyan_red e_bonus_attack_2_wisdom_2, 2, 1, 1, Card.color.cyan);
+		// Anuth's Trick
+			Normal anuths_trick_1 = new Card("Anuth's Trick", 4, a_sacrifice, e_kill_defender, 2, 1, 0, Card.color.red);
+			Normal anuths_trick_2 = new Card("Anuth's Trick", 4, a_sacrifice, e_kill_defender, 2, 1, 0, Card.color.red);
+		// Feasible Solution
+			Normal feasible_solution_1 = new Card("Feasible Solution", 4, a_combo_red_magenta, e_bonus_coin_2_wisdom_3, 1, 1, 2, Card.color.magenta);
+			Normal feasible_solution_2 = new Card("Feasible Solution", 4, a_combo_red_magenta, e_bonus_coin_2_wisdom_3, 1, 1, 2, Card.color.magenta);
+		// Shrewd Deal
+			Normal shrew_deal_1 = new Card("Shrewd Deal", 5, a_combo_cyan, e_bonus_wisdom_2, 2, 1, 1, Card.color.cyan);
+			Normal shrew_deal_2 = new Card("Shrewd Deal", 5, a_combo_cyan, e_bonus_wisdom_2, 2, 1, 1, Card.color.cyan);
+		// Sabotage
+			Normal sabotage_1 = new Card("sabotage", 5, a_sacrifice, e_bat_destroy, 2, 2, 0, Card.color.red);
+			Normal sabotage_1 = new Card("sabotage", 5, a_sacrifice, e_bat_destroy, 2, 2, 0, Card.color.red);
+		// Strategic Attack
+			Normal strategic_attack_1 = new Card("Strategic Attack", 5, a_combo_red, e_card_draw_1, 1, 3, 0, Card.color.magenta);
+			Normal strategic_attack_2 = new Card("Strategic Attack", 5, a_combo_red, e_card_draw_1, 1, 3, 0, Card.color.magenta);
+		// Qoam Vein
+			Normal qoam_vein_1 = new Card("Qoam Vein", 7, a_combo_red_magenta, e_card_draw_2, 3, 2, 2, Card.color.cyan);
+			// Normal qoam_vein_2 = new Card("Qoam Vein", 7, a_combo_red_magenta, e_card_draw_2, 3, 2, 2, Card.color.cyan);
+		// Flawless Deploy
+			Normal flawless_deploy_1 = new Card("Flawless Deploy", 7, a_combo_cyan_magenta, e_card_draw_2, 2, 3, 2, Card.color.red);
+			// Normal flawless_deploy_2 = new Card("Flawless Deploy", 7, a_combo_cyan_magenta, e_card_draw_2, 2, 3, 2, Card.color.red);
+		// Alchemic Key
+			Normal alchemic_key_1 = new Card("Alchemic Key", 7, a_combo_cyan, e_card_draw_1, 2, 2, 3, Card.color.magenta);
+			// Normal alchemic_key_2 = new Card("Alchemic Key", 7, a_combo_cyan, e_card_draw_1, 2, 2, 3, Card.color.magenta);
+		// Volfyirion's Mark
+			Normal volfyirions_mark_1 = new Card("Volfyirion's Mark", 8, a_combo_cyan_magenta, e_move_volfyirion, 3, 3, 2, Card.color.cyan);
+			// Normal volfyirions_mark_2 = new Card("Volfyirion's Mark", 8, a_combo_cyan_magenta, e_move_volfyirion, 3, 3, 2, Card.color.cyan);
+		// Endless Tactic
+			Normal endless_tactic_1 = new Card("Endless Tactic", 8, a_combo_cyan_magenta, e_bonus_attack_3, 2, 4, 3, Card.color.red);
+			// Normal endless_tactic_2 = new Card("Endless Tactic", 8, a_combo_cyan_magenta, e_bonus_attack_3, 2, 4, 3, Card.color.red);
+		// Book of wisdom
+			Normal book_of_wisdom_1 = new Card("Book of Wisdom", 8, a_combo_red_red, e_card_draw_2, 2, 1, 5, Card.color.magenta);
+			// Normal book_of_wisdom_2 = new Card("Book of Wisdom", 8, a_combo_red_red, e_card_draw_2, 2, 1, 5, Card.color.magenta);
+
+	// ########################
+	// ### Cartes Batiments ###
+	// ########################
+
+		// Mint
+			Building mint_1 = new Card("Mint", 4, a_combo_cyan_cyan, e_bonus_coin_2, 1, 0, 1, Card.color.cyan);
+			Building mint_2 = new Card("Mint", 4, a_combo_cyan_cyan, e_bonus_coin_2, 1, 0, 1, Card.color.cyan);
+		// Barracks
+			Building barracks_1 = new Card("Barracks", 4, a_combo_red_red, e_card_draw_1, 0, 2, 0, Card.color.red);
+			Building barracks_2 = new Card("Barracks", 4, a_combo_red_red, e_card_draw_1, 0, 2, 0, Card.color.red);
+		// Apothecary
+			Building apothecary_1 = new Card("Apothecary", 4, a_combo_cyan, e_bonus_wisdom_1, 1, 0, 1, Card.color.magenta);
+			Building apothecary_2 = new Card("Apothecary", 4, a_combo_cyan, e_bonus_wisdom_1, 1, 0, 1, Card.color.magenta);
+		// Black Market
+			Building black_market_1 = new Card("Black Market", 5, a_combo_red, e_card_destruct, 2, 0, 0, Card.color.cyan);
+			Building black_market_2 = new Card("Black Market", 5, a_combo_red, e_card_destruct, 2, 0, 0, Card.color.cyan);
+		// War Academy
+			Building war_academy_1 = new Card("War Academy", 5, a_combo_red_magenta, e_bonus_attack_2, 0, 2, 0, Card.color.red);
+			Building war_academy_2 = new Card("War Academy", 5, a_combo_red_magenta, e_bonus_attack_2, 0, 2, 0, Card.color.red);
+		// Library
+			Building library_1 = new Card("Library", 5, a_combo_cyan_magenta, e_card_draw_1, 2, 0, 0, Card.color.magenta);
+			Building library_2 = new Card("Library", 5, a_combo_cyan_magenta, e_card_draw_1, 2, 0, 0, Card.color.magenta);
+		// Bank
+			Building bank_1 = new Card("Bank", 6, a_combo_cyan, e_card_draw_1, 1, 1, 0, Card.color.cyan);
+			// Building bank_2 = new Card("Bank", 6, a_combo_cyan, e_card_draw_1, 1, 1, 0, Card.color.cyan);
+		// Headquarters
+			Building headquarters_1 = new Card("Headquarters", 6, a_combo_cyan_red e_bonus_coin_1_wisdom_2, 1, 2, 0, Card.color.red);
+			// Building headquarters_2 = new Card("Headquarters", 6, a_combo_cyan_red e_bonus_coin_1_wisdom_2, 1, 2, 0, Card.color.red);
+		// Laboratory
+			Building laboratory_1 = new Card("Laboratory", 6, a_combo_red, e_bonus_attack_1, 1, 1, 1, Card.color.magenta);
+			// Building laboratory_2 = new Card("Laboratory", 6, a_combo_red, e_bonus_attack_1, 1, 1, 1, Card.color.magenta);
+
+	// #######################
+	// ### Cartes Gardiens ###
+	// #######################
+
+		// Mercenary Archer
+			Defender mercenary_archer_1 = new Card("Mercenary Archer", 2, a_mercenary, e_mercenary, 0, 0, 0, Card.color.);
+			Defender mercenary_archer_2 = new Card("Mercenary Archer", 2, a_mercenary, e_mercenary, 0, 0, 0, Card.color.);
+		// Soldier
+			Defender soldier_1 = new Card("Soldier", 3, a_sacrifice, e_bonus_attack_2, 0, 0, 0, Card.color.grey);
+			Defender soldier_2 = new Card("Soldier", 3, a_sacrifice, e_bonus_attack_2, 0, 0, 0, Card.color.grey);
+		//Fighter
+			Defender fighter_1 = new Card("Fighter", 3, a_sacrifice, e_bonus_attack_3, 0, 0, 0, Card.color.grey);
+			Defender fighter_2 = new Card("Fighter", 3, a_sacrifice, e_bonus_attack_3, 0, 0, 0, Card.color.grey);
+		// Novice
+			Defender novice_1 = new Card("Novice", 3, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.grey);
+			Defender novice_2 = new Card("Novice", 3, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.grey);
+		// Mercenary Veteran
+			Defender mercenary_veteran_1 = new Card("Mercenary Veteran", 3, a_mercenary, e_mercenary, 0, 0, 0, Card.color.grey);
+			Defender mercenary_veteran_2 = new Card("Mercenary Veteran", 3, a_mercenary, e_mercenary, 0, 0, 0, Card.color.grey);
+		// Guard
+			Defender guard_1 = new Card("Guard", 4, a_sacrifice, e_bonus_attack_3, 0, 0, 0, Card.color.grey);
+			Defender guard_2 = new Card("Guard", 4, a_sacrifice, e_bonus_attack_3, 0, 0, 0, Card.color.grey);
+		// Qoam Scout
+			Defender qoam_scout_1 = new Card("Qoam Scout", 4, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.cyan);
+			Defender qoam_scout_2 = new Card("Qoam Scout", 4, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.cyan);
+		// Scholar
+			Defender scholar_1 = new Card("Scholar", 4, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.magenta);
+			Defender scholar_2 = new Card("Scholar", 4, a_sacrifice, e_bonus_wisdom_3, 0, 0, 0, Card.color.magenta);
+		// Armored Soldier
+			Defender armored_soldier_1 = new Card("Armored Soldier", 6, a_sacrifice, e_bonus_attack_5, 0, 0, 0, Card.color.cyan);
+			// Defender armored_soldier_2 = new Card("Armored Soldier", 6, a_sacrifice, e_bonus_attack_5, 0, 0, 0, Card.color.cyan);
+		// Qoamipulator
+			Defender qoamipulator_1 = new Card("Qoamipulator", 6, a_sacrifice, e_bonus_wisdom_5, 0, 0, 0, Card.color.magenta);
+			// Defender qoamipulator_2 = new Card("Qoamipulator", 6, a_sacrifice, e_bonus_wisdom_5, 0, 0, 0, Card.color.magenta);
+		// Elite Trooper
+			Defender elite_trooper_1 = new Card("Elite Trooper", 7, a_sacrifice, e_bonus_attack_5, 0, 0, 0, Card.color.red);
+			// Defender elite_trooper_2 = new Card("Elite Trooper", 7, a_sacrifice, e_bonus_attack_5, 0, 0, 0, Card.color.red);
+
+// #############################################
+// ###										 ###
+// ###			 Cartes Merveilles			 ###
+// ###										 ###
+// #############################################
+
+	// Tous les effets ont le cout de détruire la carte
+	// Sharp Qoam
+		Wonder sharp_qoam_1 = new Card("Sharp Qoam", 2, a_sacrifice, e_bonus_coin_2, 0, 1, 0, Card.color.grey);
+		Wonder sharp_qoam_2 = new Card("Sharp Qoam", 2, a_sacrifice, e_bonus_coin_2, 0, 1, 0, Card.color.grey);
+	// Divining Petals
+		Wonder divining_petals_1 = new Card("Divnining Petals", 2, a_sacrifice, e_bonus_wisdom_2, 0, 1, 0, Card.color.grey);
+		Wonder divining_petals_2 = new Card("Divnining Petals", 2, a_sacrifice, e_bonus_wisdom_2, 0, 1, 0, Card.color.grey);
+	// Ascension Path
+		Wonder ascension_path_1 = new Card("Ascension Path", 3, a_sacrifice, NULL, 2, 2, 0, Card.color.grey); // cout d'achat et de blockage différents
+		Wonder ascension_path_2 = new Card("Ascension Path", 3, a_sacrifice, NULL, 2, 2, 0, Card.color.grey);
+	// Voracious Seed
+		Wonder voracious_seed_1 = new Card("Voracious Seed", 3, a_sacrifice, e_bat_destroy, 0, 0, 1, Card.color.grey);
+		Wonder voracious_seed_2 = new Card("Voracious Seed", 3, a_sacrifice, e_bat_destroy, 0, 0, 1, Card.color.grey);
+	// Living Knife
+		Wonder living_knife_1 = new Card("Living Knife", 3, a_sacrifice, e_kill_defender, 0, 1, 0, Card.color.grey);
+		Wonder living_knife_2 = new Card("Living Knife", 3, a_sacrifice, e_kill_defender, 0, 1, 0, Card.color.grey);
+	// Strange Box
+		Wonder strange_box_1 = new Card("Strange Box", 3, a_sacrifice, e_bonus_coin_2, 1, 0, 1, Card.color.grey);
+		Wonder strange_box_2 = new Card("Strange Box", 3, a_sacrifice, e_bonus_coin_2, 1, 0, 1, Card.color.grey);
+	// Glowing Fungi
+		Wonder glowing_fungi_1 = new Card("Glowing Fungi", 3, a_sacrifice, e_card_destruct, 1, 0, 1, Card.color.grey);
+		Wonder glowing_fungi_2 = new Card("Glowing Fungi", 3, a_sacrifice, e_card_destruct, 1, 0, 1, Card.color.grey);
+	// Pure Qoam
+		Wonder pure_qoam_1 = new Card("Pure Qoam", 3, a_sacrifice, e_bonus_wisdom_3, 1, 0, 1, Card.color.grey);
+		Wonder pure_qoam_2 = new Card("Pure Qoam", 3, a_sacrifice, e_bonus_wisdom_3, 1, 0, 1, Card.color.grey);
+	// Sibilant Crystal
+		Wonder sibilant_crystal_1 = new Card("Sibilant Crystal", 3, a_sacrifice, e_bonus_attack_2, 1, 0, 1, Card.color.grey);
+		Wonder sibilant_crystal_2 = new Card("Sibilant Crystal", 3, a_sacrifice, e_bonus_attack_2, 1, 0, 1, Card.color.grey);
+	// Black Spores
+		Wonder black_spores_1 = new Card("Black Spores", 4, a_sacrifice, e_kill_defender, 1, 0, 1, Card.color.grey);
+		Wonder black_spores_2 = new Card("Black Spores", 4, a_sacrifice, e_kill_defender, 1, 0, 1, Card.color.grey);
+	// Primal Beast
+		Wonder primal_beast_1 = new Card("Primal Beast", 4, a_sacrifice, e_card_draw_1, 0, 1, 1, Card.color.grey);
+		Wonder primal_beast_2 = new Card("Primal Beast", 4, a_sacrifice, e_card_draw_1, 0, 1, 1, Card.color.grey);
+	// Floating Crystal
+		Wonder floating_crystal_1 = new Card("Floating Crystal", 4, a_sacrifice, e_card_draw_1, 1, 0, 1, Card.color.grey);
+		Wonder floating_crystal_2 = new Card("Floating Crystal", 4, a_sacrifice, e_card_draw_1, 1, 0, 1, Card.color.grey);
+	// Void Fluid
+		Wonder void_fluid_1 = new Card("Void Fluid", 4, a_sacrifice, e_bat_destroy, 0, 2, 0, Card.color.grey);
+		Wonder void_fluid_2 = new Card("Void Fluid", 4, a_sacrifice, e_bat_destroy, 0, 2, 0, Card.color.grey);
+	// Emerald horn
+		Wonder emerald_horn_1 = new Card("Emerald Horn", 6, a_sacrifice, e_move_volfyirion, 2, 0, 1, Card.color.grey);
+		Wonder emerald_horn_2 = new Card("Emerald Horn", 6, a_sacrifice, e_move_volfyirion, 2, 0, 1, Card.color.grey);

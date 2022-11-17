@@ -1,0 +1,62 @@
+// cimetière pas a instancier : juste a supprimer de la liste
+Carte : abstraite 
+  nom
+  couleur (rouge maganta cyan neutre)
+  ressource(argent, sagesse et attaque)
+  effet des cartes
+    Merveille
+      cout
+      !!! Ascension path : meme cout que son prix achat ou achat : achat+1
+    Batiment 
+      cout
+    Defenseur
+      cout
+    Debutant
+      prospector
+      Capitain
+      Diviner
+    Normal
+      cout
+Ville
+  defendeur
+  batiment
+  defense
+Neutre
+  Volfyrion (alive O/N)
+  Merveille
+  Marché
+  Pioche de marché 
+  Cave a merveille
+  Pioche de merveille
+Pioche : abstraite
+  rang d'ordre  
+  rang de merveilles
+Deck : abstraite
+  main
+  repos
+Joueur
+  Ville
+  Deck
+  Merveille
+EffetCarte
+  !! effet est le resultat de l'action du joueur (apres les pointillés/ la fleche)
+  un effet peut survenir après un combo (automatique) ou l'action d'un joueur.
+
+Interface mouvement carte : 
+pioche du marché - marché
+marché - repos (! saboteur : repos adverse)
+repos - main ; main - repos
+main - ville
+pioche merveilles - cave aux merveilles
+cave - repos
+main - musée
+musée - musée ? 
+ville - defausse 
+main - defausse
+marché - defausse
+
+Interface mouvement volfyirion
+maison - ville
+ville - maison
+
+
