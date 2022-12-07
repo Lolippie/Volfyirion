@@ -75,13 +75,12 @@ public class Field {
   }
 
   public void attackCity(City city, Player attack, Player defense) {
-    if ((defense.getCities().get(defense.getCities().indexOf(city)).getDefense()) > attack.getAttack()) {
+    if ((defense.getCities().get(defense.getCities().indexOf(city)).defenceValue()) > attack.getAttack()) {
       System.out.println("You don't have enough attack to attack this city");
     } else if (defense.getCities().get(defense.getCities().indexOf(city)).haveProtector()) {
       defense.getCities().get(defense.getCities().indexOf(city)).removeProtector();
       attack.setAttack(-(defense.getCities().get(defense.getCities().indexOf(city)).getDefense()));
     } else {
-
       attack.setAttack(-defense.getCities().get(defense.getCities().indexOf(city)).getDefense());
       defense.getCities().remove(city);
     }

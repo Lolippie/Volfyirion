@@ -41,6 +41,7 @@ public class Neutral {
       this.volfyirion.setCity(null);
       this.volfyirion.setIsAlive(false);
       this.cave.setIsActive(false);
+      p.setAttack(-16);
     }
   
     // fonction pour marché
