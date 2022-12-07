@@ -5,7 +5,6 @@ package Using.Card;
 import Using.Buy_Card.*;
 import Field.Player.*;
 import Using.Color.*;
-import Field.Neutral.Volfyirion.*;;
 public class Wonder extends Card implements Buy_Card {
   private boolean lock;
 
@@ -37,7 +36,7 @@ public class Wonder extends Card implements Buy_Card {
     }
   }
 
-  public void getBonusByDestroyWonder(Player player, Player adv, Volfyirion vol) {
+  public void getBonusByDestroyWonder(Player player) {
     String firstStep = this.bonus.split("_")[1];
     if (firstStep.equals("bonus")) {
       String secondStep = this.bonus.split("_")[2];
@@ -48,15 +47,24 @@ public class Wonder extends Card implements Buy_Card {
       } else {
         player.setAttack(Integer.valueOf(this.bonus.split("_")[3]));
       }
-    } else if (firstStep.equals("card")) {
+    } 
+    else if (firstStep.equals("card")) {
       String secondStep = this.bonus.split("_")[2];
       if (secondStep.equals("draw")) {
         player.getDeckPlayer().addCardHand(player.getDeckPlayer().pickCardRest());
       }
+      else {
+        player.setCanDestroyCard(true);
+      }
+    }
+    else if(firstStep.equals("bat")){
+      player.setCanDestroyBuilding(true);
+    }
+    else if (firstStep.equals("kill")){
+      player.setCanDestroyProtector(true);
+    }
+    else if (firstStep.equals("move")){
+      player.setCanDestroyProtector(true);
+    }
   }
-  // e_kill_defender
-  // e_card_destruct
-  // e_card_draw_1
-  // e_move_volfyirion
-}
 }

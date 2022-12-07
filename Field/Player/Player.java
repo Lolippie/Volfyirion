@@ -25,6 +25,7 @@ public class Player {
   private Deck deckPlayer;
   private boolean killedVolfyirion;
   private ArrayList<City> cities;
+  private boolean canDestroyBuilding, canDestroyProtector, canDestroyCard, canMoveVolfyirion;
   private ArrayList<Wonder> museum; // le musée : les merveilles que le joueur possède (actives ou non)
 
   public Player(IdPlayer idPlayer, Boolean bool, String name, City city8, City city9, City city10, ArrayList<Protector> protectors,
@@ -37,6 +38,39 @@ public class Player {
     this.killedVolfyirion = false;
     this.cities = new ArrayList<City>(Arrays.asList(city8,city9, city10 ));
     this.museum = new ArrayList<Wonder>();
+    this.canDestroyBuilding = false;
+    this.canDestroyProtector = false;
+    this.canDestroyCard = false; 
+    this.canMoveVolfyirion = false;
+  }
+  public boolean getCanDestroyBuilding(){
+    return this.canDestroyBuilding;
+  }
+  public boolean getCanDestroyProtector(){
+    return this.canDestroyProtector;
+
+  }
+  public boolean getCanDestroyCard(){
+    return this.canDestroyCard;
+
+  }
+  public boolean getCanMoveVolfyirion(){
+    return this.canMoveVolfyirion;
+
+  }
+  public void setCanDestroyBuilding(boolean b){
+    this.canDestroyBuilding = b;
+  }
+  public void setCanDestroyProtector(boolean b){
+    this.canDestroyProtector = b;
+  }
+
+  public void setCanDestroyCard(boolean b){
+    this.canDestroyCard = b;
+
+  }
+  public void setCanMoveVolfyirion(boolean b){
+    this.canMoveVolfyirion = b ;
   }
   public ArrayList<Wonder> getMuseum(){
     return this.museum;
@@ -94,8 +128,22 @@ public void setHisTurn(boolean b){
     this.ressources.resetWisdom();
     this.ressources.resetCoin();
   }
+  public void endTurnBonus(){
+    this.canDestroyBuilding = false;
+    this.canDestroyProtector = false;
+    this.canDestroyCard = false;
+    this.canMoveVolfyirion = false;
+
+  }
   public void attackCity(City c){
     if (c.getProtector() != null && getAttack() >= c.defenceValue()){
+      if (c.getProtector().getBonus() == "e_mercenary"){
+        this.ressources.setAttack(-c.defenceValue());
+        c.removeProtector();
+        if (c.getBuilding() != null){
+          c.removeBuilding();
+        }
+      }
       this.ressources.setAttack(-c.defenceValue());
       c.removeProtector();
     } 
@@ -110,7 +158,6 @@ public void setHisTurn(boolean b){
   public int getAttack() {
     return this.ressources.getAttack();
   }
-
   public int getWisdom() {
     return this.ressources.getWisdom();
   }
@@ -198,8 +245,8 @@ public void setHisTurn(boolean b){
 
   }
 
-  public void destroyWonder(Wonder w, Player adv, Volfyirion vol) { // possible?
-    w.getBonusByDestroyWonder(this, adv, vol);
+  public void destroyWonder(Wonder w) { // possible?
+    w.getBonusByDestroyWonder(this);
     this.museum.remove(w);
   }
 

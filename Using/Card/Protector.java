@@ -119,7 +119,6 @@ public class Protector extends Card implements Buy_Card {
         for (int i = 1; i <= Integer.valueOf(this.bonus.split("_")[3]); i++) {
           player.getDeckPlayer().addCardHand(player.getDeckPlayer().pickCardRest());
         }
-
       }
     }
   }

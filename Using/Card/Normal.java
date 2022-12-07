@@ -184,9 +184,11 @@ public void getBonusByDestruct(Player player) {
           player.setWisdom(Integer.valueOf(this.bonus.split("_")[3]));
           if (thirdStep.equals("coin")) {
             player.setCoin(Integer.valueOf(this.bonus.split("_")[5]));
-          } else if (thirdStep.equals("attack")) {
+          } 
+          else if (thirdStep.equals("attack")) {
             player.setAttack(Integer.valueOf(this.bonus.split("_")[5]));
-          } else {
+          } 
+          else {
             player.setWisdom(Integer.valueOf(this.bonus.split("_")[5]));
           }
         }
@@ -197,10 +199,23 @@ public void getBonusByDestruct(Player player) {
         for (int i = 0; i < Integer.valueOf(this.bonus.split("_")[3]); i++) {
           player.getDeckPlayer().addCardHand(player.getDeckPlayer().pickCardRest());
         }
+      }
+      else {
+        player.setCanDestroyCard(true);
+      }
     }
+    else if(firstStep.equals("bat")){
+      player.setCanDestroyBuilding(true);
+    }
+    else if (firstStep.equals("kill")){
+      player.setCanDestroyProtector(true);
+    }
+    else if (firstStep.equals("move")){
+      player.setCanDestroyProtector(true);
+    }
+  } 
+  else {
+    System.out.println("This card does nothing");
   }
-} else {
-  System.out.println("This card does nothing");
-}
-}
+  }
 }
