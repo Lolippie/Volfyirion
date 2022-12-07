@@ -18,16 +18,18 @@ public class HandController {
     void clickHand(MouseEvent event) {
         if (event.isSecondaryButtonDown()){
             myListenerCard.onClickListener(thisCard);
-            if (this.field.getField().getPlayer1().getDeckPlayer().isBuilding(thisCard)){
-            }
-            else if (this.field.getField().getPlayer1().getDeckPlayer().isProtector(thisCard) ){
-                this.field.getField().getPlayer1().getDeckPlayer().getProtectorFromCard(thisCard).getBonusByDestruct(this.field.getField().getHisTurn());
+            if (this.field.getField().getHisTurn().getDeckPlayer().isProtector(thisCard) ){
+                this.field.getField().getHisTurn().getDeckPlayer().getProtectorFromCard(thisCard).getBonusByDestruct(this.field.getField().getHisTurn());
                 this.field.getField().getHisTurn().getDeckPlayer().removeCardHand(thisCard);
                 setData(thisCard, myListenerCard, field);
             }
-            else if (this.field.getField().getPlayer1().getDeckPlayer().isNormal(thisCard)){
+            else if (this.field.getField().getHisTurn().getDeckPlayer().isNormal(thisCard)){
                 this.field.getField().getPlayer1().getDeckPlayer().getNormalFromCard(thisCard).getBonusByDestruct(this.field.getField().getHisTurn());
                 this.field.getField().getHisTurn().getDeckPlayer().removeCardHand(thisCard);
+                setData(thisCard, myListenerCard, field);
+            } else if ( this.field.getField().getHisTurn().getCanDestroyCard()){
+                this.field.getField().getHisTurn().getDeckPlayer().removeCardHand(thisCard);
+                this.field.getField().getHisTurn().setCanDestroyCard(false);
                 setData(thisCard, myListenerCard, field);
             }
         }

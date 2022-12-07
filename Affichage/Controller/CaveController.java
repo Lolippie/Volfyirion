@@ -20,6 +20,8 @@ public class CaveController {
     void buyCard(MouseEvent event) {
         if(this.field.getField().getNeutral().getVolfyirion().getIsAlive()){
             boolean alreadyBought = false;
+            myListenerCard.onClickListener(thisWonder);
+
             if (!alreadyBought){
                 if (this.field.getField().getHisTurn().getAttack() >= thisWonder.getCost()){
                     this.field.getField().buyWonder(thisWonder, this.field.getField().getHisTurn());
