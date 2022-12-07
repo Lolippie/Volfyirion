@@ -18,16 +18,21 @@ public class CaveController {
 
     @FXML
     void buyCard(MouseEvent event) {
-        boolean alreadyBought = false;
-        if (!alreadyBought){
-            if (this.field.getField().getHisTurn().getAttack() >= thisWonder.getCost()){
-                this.field.getField().buyWonder(thisWonder, this.field.getField().getHisTurn());
-                caveImg.setImage(null);
-                alreadyBought= true;
+        if(this.field.getField().getNeutral().getVolfyirion().getIsAlive()){
+            boolean alreadyBought = false;
+            if (!alreadyBought){
+                if (this.field.getField().getHisTurn().getAttack() >= thisWonder.getCost()){
+                    this.field.getField().buyWonder(thisWonder, this.field.getField().getHisTurn());
+                    caveImg.setImage(null);
+                    alreadyBought= true;
+                }
+            }
+            else {
+                System.out.println("You can't bought this card 2 times in a row");
             }
         }
         else {
-            System.out.println("You can't bought this card 2 times in a row");
+            System.out.println("Volfyirion is dead !");
         }
     }
 

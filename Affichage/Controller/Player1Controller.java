@@ -30,7 +30,18 @@ public class Player1Controller {
 
     @FXML
     private Text Coin;
+    
+    @FXML
+    private Text canDestructBuilding;
 
+    @FXML
+    private Text canDestructCard;
+
+    @FXML
+    private Text canDestructProtector;
+
+    @FXML
+    private Text canMovVolfy;
     @FXML
     private GridPane HandJD;
 
@@ -141,12 +152,36 @@ public class Player1Controller {
         setField(this.field);
 
     }
-   
     @FXML
     void refreshRessources(ActionEvent event) {
         Wisdom.setText(Integer.toString(field.getField().getHisTurn().getWisdom()));
         Attack.setText(Integer.toString(field.getField().getHisTurn().getAttack()));
         Coin.setText(Integer.toString(field.getField().getHisTurn().getCoin()));
+        if(field.getField().getHisTurn().getCanDestroyBuilding()){
+            canDestructBuilding.setText("Y");
+        }
+        else{ 
+            canDestructBuilding.setText("N");
+        }
+
+        if(field.getField().getHisTurn().getCanDestroyCard()){
+            canDestructCard.setText("Y");
+        }
+        else{ 
+            canDestructCard.setText("N");
+        }
+        if(field.getField().getHisTurn().getCanDestroyProtector()){
+            canDestructProtector.setText("Y");
+        }
+        else{ 
+            canDestructProtector.setText("N");
+        }
+        if(field.getField().getHisTurn().getCanMoveVolfyirion()){
+            canMovVolfy.setText("Y");
+        }
+        else{ 
+            canMovVolfy.setText("N");
+        }
     }
 
     public void setField(Field_Creation f){
@@ -223,20 +258,25 @@ public class Player1Controller {
         try {
             // ----------------------------------------------------------------------------------------------
             //                                  Cave
-            int columnCave = 0;
-            int rowCave = 1;
-            for (int i = 0 ; i < this.field.getField().getNeutral().getCave().getCave().size();i++){
-                FXMLLoader fxmlLoaderCave = new FXMLLoader();
-                fxmlLoaderCave.setLocation(getClass().getResource("../Uti/fxml/cardCave.fxml"));
-                AnchorPane anchorPaneCave = fxmlLoaderCave.load();
-                CaveController caveController = fxmlLoaderCave.getController();
-                caveController.setData(this.field.getField().getNeutral().getCave().getCave().get(i), myListenerCard, this.field);
-                cave.add(anchorPaneCave, columnCave++, rowCave);
-                GridPane.setMargin(anchorPaneCave, new Insets(10));
+            if (this.field.getField().getNeutral().getCave().getIsActive()){
+                int columnCave = 0;
+                int rowCave = 1;
+                for (int i = 0 ; i < this.field.getField().getNeutral().getCave().getCave().size();i++){
+                    FXMLLoader fxmlLoaderCave = new FXMLLoader();
+                    fxmlLoaderCave.setLocation(getClass().getResource("../Uti/fxml/cardCave.fxml"));
+                    AnchorPane anchorPaneCave = fxmlLoaderCave.load();
+                    CaveController caveController = fxmlLoaderCave.getController();
+                    caveController.setData(this.field.getField().getNeutral().getCave().getCave().get(i), myListenerCard, this.field);
+                    cave.add(anchorPaneCave, columnCave++, rowCave);
+                    GridPane.setMargin(anchorPaneCave, new Insets(10));
+                }
             }
-    } catch (IOException e){
-        e.printStackTrace();
-    };
+            else {
+                indication.setText("Volfyirion is dead");
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        };
 
 
 

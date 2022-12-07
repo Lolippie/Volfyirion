@@ -18,7 +18,13 @@ public class WonderControllerEnnemy {
 
     @FXML
     void actionEnnemy(MouseEvent event) {
-
+        if(event.isPrimaryButtonDown()){
+            myListenerCard.onClickListener(wonder);
+            if(!wonder.getIsLock()){
+                wonder.setLock(true, this.field.getField().getHisTurn());
+                img.setRotate(90);
+            }
+        }
     }
 
     public void setData(Wonder w, MyListenerCard myListener, Field_Creation f){
@@ -27,5 +33,8 @@ public class WonderControllerEnnemy {
         this.field = f;
         Image image = new Image(getClass().getResourceAsStream(wonder.getImgSrc()));
         img.setImage(image);
+        if(wonder.getIsLock()){
+            img.setRotate(90);
+        }
     }
 }

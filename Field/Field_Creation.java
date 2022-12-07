@@ -143,8 +143,8 @@ public class Field_Creation {
 			Normal shrewd_deal_1 = new Normal("Shrewd Deal", 5, Normal.ComboNor.cyan, "e_bonus_wisdom_2", 2, 1, 1, Color.cyan, "../Uti/img/carte_volfyirion/Normals/shrewd_deal.jpg");
 			Normal shrewd_deal_2 = new Normal("Shrewd Deal", 5, Normal.ComboNor.cyan, "e_bonus_wisdom_2", 2, 1, 1, Color.cyan, "../Uti/img/carte_volfyirion/Normals/shrewd_deal.jpg");
 		// Sabotage
-			Normal sabotage_1 = new Normal("sabotage", 5, Normal.ComboNor.saboteur, "e_bat_destroy", 2, 2, 0, Color.red, "../Uti/img/carte_volfyirion/Normals/sabotage.jpg");
-			Normal sabotage_2 = new Normal("sabotage", 5, Normal.ComboNor.saboteur, "e_bat_destroy", 2, 2, 0, Color.red, "../Uti/img/carte_volfyirion/Normals/sabotage.jpg");
+			Normal sabotage_1 = new Normal("sabotage", 5, Normal.ComboNor.destruct, "e_bat_destroy", 2, 2, 0, Color.red, "../Uti/img/carte_volfyirion/Normals/sabotage.jpg");
+			Normal sabotage_2 = new Normal("sabotage", 5, Normal.ComboNor.destruct, "e_bat_destroy", 2, 2, 0, Color.red, "../Uti/img/carte_volfyirion/Normals/sabotage.jpg");
 		// Strategic Attack
 			Normal strategic_attack_1 = new Normal("Strategic Attack", 5, Normal.ComboNor.red, "e_card_draw_1", 1, 3, 0, Color.magenta, "../Uti/img/carte_volfyirion/Normals/strategic_attack.jpg");
 			Normal strategic_attack_2 = new Normal("Strategic Attack", 5, Normal.ComboNor.red, "e_card_draw_1", 1, 3, 0, Color.magenta, "../Uti/img/carte_volfyirion/Normals/strategic_attack.jpg");

@@ -137,12 +137,8 @@ public void setHisTurn(boolean b){
   }
   public void attackCity(City c){
     if (c.getProtector() != null && getAttack() >= c.defenceValue()){
-      if (c.getProtector().getBonus() == "e_mercenary"){
-        this.ressources.setAttack(-c.defenceValue());
-        c.removeProtector();
-        if (c.getBuilding() != null){
+      if (c.getProtector().getBonus() == "e_mercenary" && c.getBuilding() != null){
           c.removeBuilding();
-        }
       }
       this.ressources.setAttack(-c.defenceValue());
       c.removeProtector();

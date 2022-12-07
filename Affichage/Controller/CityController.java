@@ -44,16 +44,23 @@ public class CityController {
         int i =0;
         if (event.isPrimaryButtonDown()){
             myListenerCity.onClickListener(thisCity);
-            if (thisCity.getProtector() == null) {
-                while (i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size()-1)  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
-                    i++;
-                }
-                if (this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
-                    this.field.getField().getHisTurn().addProtectorCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
-                    setData(thisCity, myListenerCity, field);
-                }
+            if (thisCity.getIsStanding()){
                 
+                if (thisCity.getProtector() == null) {
+                    while (i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size()-1)  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
+                        i++;
+                    }
+                    if (this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
+                        this.field.getField().getHisTurn().addProtectorCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
+                        setData(thisCity, myListenerCity, field);
+                    }
+                
+                }
             }
+            else {
+                System.out.println("You can't add a protector, this city is defeated");
+            }
+            
         }
         else if (event.isSecondaryButtonDown() && thisCity.getProtector() != null){
             myListenerCity.onClickListener(thisCity);

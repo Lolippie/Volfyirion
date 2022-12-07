@@ -45,14 +45,20 @@ public class CityEnnemyController {
 
     @FXML
     void attackProtector(MouseEvent event) {
-        if (event.isSecondaryButtonDown()){
-            myListenerCity.onClickListener(thisCity);
-            if(this.field.getField().getHisTurn().getCanDestroyProtector()){
-                thisCity.removeProtector();
-                this.field.getField().getHisTurn().setCanDestroyProtector(false);
+        if (thisCity.getIsStanding()){
+            if (event.isSecondaryButtonDown()){
+                myListenerCity.onClickListener(thisCity);
+                if(this.field.getField().getHisTurn().getCanDestroyProtector()){
+                    thisCity.removeProtector();
+                    this.field.getField().getHisTurn().setCanDestroyProtector(false);
+                }
+                setData(thisCity, myListenerCity, field);
             }
-            setData(thisCity, myListenerCity, field);
+            else {
+                System.out.println("This city is already defeated");
+            }
         }
+        
         
     }
 

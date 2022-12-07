@@ -41,9 +41,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="835.0" layoutY="747.0" prefHeight="40.0" prefWidth="153.0">
+      <AnchorPane layoutX="835.0" layoutY="747.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="75.0">
          <children>
-            <Text fx:id="Coin" fill="WHITE" layoutX="8.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="138.0" AnchorPane.bottomAnchor="-4.3388671875" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0673828125">
+            <Text fx:id="Coin" fill="WHITE" layoutX="8.0" layoutY="40.9326171875" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="39.999999999999886" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="Segoe Script" size="33.0" />
                </font>
@@ -59,18 +59,18 @@
             </GridPane>
          </children>
       </HBox>
-      <AnchorPane layoutX="840.0" layoutY="802.0" prefHeight="43.0" prefWidth="153.0">
+      <AnchorPane layoutX="840.0" layoutY="802.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="75.0">
          <children>
-            <Text fx:id="Attack" fill="WHITE" layoutX="1.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="138.0" AnchorPane.bottomAnchor="13.6611328125" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="-3.9326171875">
+            <Text fx:id="Attack" fill="WHITE" layoutX="1.0" layoutY="31.9326171875" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="54.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="98.0" AnchorPane.topAnchor="-4.0">
                <font>
                   <Font name="Segoe Script" size="33.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="835.0" layoutY="845.0" prefHeight="40.0" prefWidth="153.0">
+      <AnchorPane layoutX="835.0" layoutY="845.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="54.0">
          <children>
-            <Text fx:id="Wisdom" fill="WHITE" layoutX="5.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="138.0" AnchorPane.bottomAnchor="-0.3388671875" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="1.0673828125">
+            <Text fx:id="Wisdom" fill="WHITE" layoutX="5.0" layoutY="36.9326171875" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="54.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="1.0">
                <font>
                   <Font name="Segoe Script" size="33.0" />
                </font>
@@ -89,7 +89,7 @@
          <image>
             <Image url="@../img/widsom.png" />
          </image></ImageView>
-      <AnchorPane layoutX="554.0" layoutY="172.0" prefHeight="64.0" prefWidth="684.0">
+      <AnchorPane layoutX="568.0" layoutY="275.0" prefHeight="64.0" prefWidth="684.0">
          <children>
             <Text fx:id="indication" layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" wrappingWidth="668.9999999999998">
                <font>
@@ -200,5 +200,50 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Text fill="WHITE" layoutX="976.0" layoutY="702.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="You can ">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="901.0" layoutY="754.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Volfyirion">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="901.0" layoutY="781.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Destruct a Card">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="901.0" layoutY="809.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Destruct a Protector (E)">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="901.0" layoutY="843.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Destruct a Building (E)">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="canMovVolfy" layoutX="1090.0" layoutY="754.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="canDestructCard" layoutX="1090.0" layoutY="781.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="canDestructProtector" layoutX="1090.0" layoutY="809.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="canDestructBuilding" layoutX="1090.0" layoutY="843.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

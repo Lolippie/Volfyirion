@@ -37,7 +37,7 @@ public class Field {
     return this.neutralField;
   }
 
-  public Player endTurn() {
+  public void endTurn() {
     if (this.p1.getHisTurn()){
       this.p1.unmakeHand();
       this.p2.makeHand();
@@ -45,7 +45,6 @@ public class Field {
       this.p1.endTurnBonus();
       this.p1.setHisTurn(false);
       this.p2.setHisTurn(true);
-      return p2;
     } else {
       this.p2.unmakeHand();
       this.p1.makeHand();
@@ -53,7 +52,6 @@ public class Field {
       this.p2.endTurnBonus();
       this.p2.setHisTurn(false);
       this.p1.setHisTurn(true);
-      return p1;
     }
   }
 
@@ -103,7 +101,7 @@ public class Field {
 
   public void attackVolfyirion(Player p){
     if (p.getAttack() >= 16){
-      this.neutralField.getVolfyirion().setIsAlive(false);
+      this.neutralField.volfyirionDead(p);
     }
     else {
       System.out.println("You don't have enought attakc to defeat Volfyirion");
