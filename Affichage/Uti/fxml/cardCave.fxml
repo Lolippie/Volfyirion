@@ -4,9 +4,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#buyCard" prefHeight="139.0" prefWidth="101.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Affichage.Controller.CaveController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#buyCard" prefHeight="172.0" prefWidth="123.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Affichage.Controller.CaveController">
    <children>
-      <ImageView fx:id="caveImg" fitHeight="139.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="caveImg" fitHeight="168.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/empty_card.jpg" />
          </image>

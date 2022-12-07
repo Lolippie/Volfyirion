@@ -3,8 +3,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#actionEnnemy" prefHeight="196.0" prefWidth="147.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Affichage.Controller.WonderControllerEnnemy">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#actionEnnemy" prefHeight="153.0" prefWidth="117.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Affichage.Controller.WonderControllerEnnemy">
    <children>
-      <ImageView fx:id="img" fitHeight="207.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img" fitHeight="150.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

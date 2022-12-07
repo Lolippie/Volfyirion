@@ -3,10 +3,12 @@ package Affichage.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +38,7 @@ public class Player1Controller {
     private Field_Creation field;
     private MyListenerCard myListenerCard;
     private MyListenerCity myListenerCity;
+    
     @FXML
     private Text Attack;
 
@@ -74,6 +77,12 @@ public class Player1Controller {
 
     @FXML
     private ImageView initialPlaceVolfy;
+
+    @FXML
+    private ScrollPane scrollJD;
+
+    @FXML
+    private ScrollPane scrollJG;
 
     @FXML
     private Button stop;
@@ -141,7 +150,10 @@ public class Player1Controller {
         }
         cityJD.getChildren().clear();
         cityJG.getChildren().clear();
+        MuseumJD.getChildren().clear();
+        MuseumJG.getChildren().clear();
         setField(this.field);
+
     }
    
     @FXML
@@ -152,6 +164,7 @@ public class Player1Controller {
     }
 
     public void setField(Field_Creation f){
+
         this.field = f;
         this.field.getField().getHisTurn().startTurn();
         Wisdom.setText(Integer.toString(field.getField().getHisTurn().getWisdom()));
@@ -173,10 +186,12 @@ public class Player1Controller {
                 Coin.setText(Integer.toString(field.getField().getHisTurn().getCoin()));
             }
         };
-        int columnHand = 0;
-        int rowHand = 1;
+        
         try {
-
+            // -----------------------------------------------------------------------------
+            //                                 Hand
+            int columnHand = 0;
+            int rowHand = 1;
             for (int i = 0 ; i < this.field.getField().getHisTurn().getDeckPlayer().getHand().size();i++){
                 FXMLLoader fxmlLoaderHand = new FXMLLoader();
                 fxmlLoaderHand.setLocation(getClass().getResource("../Uti/fxml/cardHand.fxml"));
@@ -198,9 +213,13 @@ public class Player1Controller {
         } catch (IOException e){
             e.printStackTrace();
         };
+            
+
+        try {
+            // ----------------------------------------------------------------------------------------------
+            //                                  Market
             int columnMarket = 0;
             int rowMarket = 1;
-        try {
             for (int i = 0 ; i < this.field.getField().getNeutral().getMarket().getMarket().size();i++){
                 FXMLLoader fxmlLoaderMarket = new FXMLLoader();
                 fxmlLoaderMarket.setLocation(getClass().getResource("../Uti/fxml/cardMarket.fxml"));
@@ -214,7 +233,10 @@ public class Player1Controller {
             e.printStackTrace();
         };
 
+
         try {
+            // ----------------------------------------------------------------------------------------------
+            //                                  Cave
             int columnCave = 0;
             int rowCave = 1;
             for (int i = 0 ; i < this.field.getField().getNeutral().getCave().getCave().size();i++){
@@ -230,7 +252,11 @@ public class Player1Controller {
         e.printStackTrace();
     };
 
+
+
     try {
+        // -------------------------------------------------------------------
+        //                                  Cities
         int columnCity = 0;
         int rowCity = 1;
         for (int i = 0 ; i < this.field.getField().getHisTurn().getCities().size();i++){
@@ -248,7 +274,6 @@ public class Player1Controller {
            }
             GridPane.setMargin(anchorPaneCity, new Insets(5));
         }
-
         int columnCityE = 0;
         int rowCityE = 1;
         if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
@@ -272,50 +297,59 @@ public class Player1Controller {
                 GridPane.setMargin(anchorPaneCityE, new Insets(5));
             }
         }
-        
+
+
+
+        //---------------------------------------------------------------------------
+        //                                Museum
+        int columnWonder = 0;
+        int rowWonder = 1;
         for (int i = 0 ; i < this.field.getField().getHisTurn().getMuseum().size();i++){
             FXMLLoader fxmlLoaderMuseum = new FXMLLoader();
             fxmlLoaderMuseum.setLocation(getClass().getResource("../Uti/fxml/wonderMuseum.fxml"));
             AnchorPane anchorPaneMuseum = fxmlLoaderMuseum.load();
-            WonderController museumController = fxmlLoaderMuseum.getController();
-            museumController.setData(this.field.getField().getHisTurn().getMuseum().get(i), myListenerCity, this.field);
-            if (columnHand == 5){
-                columnHand = 0;
-                rowHand +=1;
-            }
+            WonderController wonderController = fxmlLoaderMuseum.getController();
+            wonderController.setData(this.field.getField().getHisTurn().getMuseum().get(i), myListenerCard, this.field);
            if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
-            MuseumJD.add(anchorPaneMuseum, columnCity++, rowCity);
+            MuseumJD.add(anchorPaneMuseum, columnWonder++, rowWonder);
+            
            }
            else {
-            MuseumJG.add(anchorPaneMuseum, columnCity++, rowCity);
+            MuseumJG.add(anchorPaneMuseum, columnWonder++, rowWonder);
            }
-            GridPane.setMargin(anchorPaneMuseum, new Insets(5));
+            
+            GridPane.setMargin(anchorPaneMuseum, new Insets(10));
         }
+        int columnWonderE = 0;
+        int rowWonderE = 1;
         if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
             for (int i = 0 ; i < this.field.getField().getPlayer2().getMuseum().size();i++){
                 FXMLLoader fxmlLoaderMuseumE = new FXMLLoader();
                 fxmlLoaderMuseumE.setLocation(getClass().getResource("../Uti/fxml/wonderMuseumEnnemy.fxml"));
-                AnchorPane anchorPaneCityE = fxmlLoaderMuseumE.load();
-                WonderControllerEnnemy cityControllerE = fxmlLoaderMuseumE.getController();
-                cityControllerE.setData(this.field.getField().getPlayer2().getCities().get(i), myListenerCity, this.field);
-                cityJG.add(anchorPaneCityE, columnCityE++, rowCityE);
-                GridPane.setMargin(anchorPaneCityE, new Insets(5));
-            }
-        } else {
-            for (int i = 0 ; i < this.field.getField().getPlayer1().getCities().size();i++){
-                FXMLLoader fxmlLoaderCityE = new FXMLLoader();
-                fxmlLoaderCityE.setLocation(getClass().getResource("../Uti/fxml/CityEnnemy.fxml"));
-                AnchorPane anchorPaneCityE = fxmlLoaderCityE.load();
-                CityEnnemyController cityControllerE = fxmlLoaderCityE.getController();
-                cityControllerE.setData(this.field.getField().getPlayer1().getCities().get(i), myListenerCity, this.field);
-                cityJD.add(anchorPaneCityE, columnCityE++, rowCityE);
-                GridPane.setMargin(anchorPaneCityE, new Insets(5));
+                AnchorPane anchorPaneMuseumE = fxmlLoaderMuseumE.load();
+                WonderControllerEnnemy wonderControllerE = fxmlLoaderMuseumE.getController();
+                wonderControllerE.setData(this.field.getField().getPlayer2().getMuseum().get(i), myListenerCard, this.field);
+
+                MuseumJG.add(anchorPaneMuseumE, columnWonderE++, rowWonderE);
+                GridPane.setMargin(anchorPaneMuseumE, new Insets(10));
             }
         }
+        else {
+            for (int i = 0 ; i < this.field.getField().getPlayer1().getMuseum().size();i++){
+                FXMLLoader fxmlLoaderMuseumE = new FXMLLoader();
+                fxmlLoaderMuseumE.setLocation(getClass().getResource("../Uti/fxml/wonderMuseumEnnemy.fxml"));
+                AnchorPane anchorPaneMuseumE = fxmlLoaderMuseumE.load();
+                WonderControllerEnnemy wonderControllerE = fxmlLoaderMuseumE.getController();
+                wonderControllerE.setData(this.field.getField().getPlayer1().getMuseum().get(i), myListenerCard, this.field);
 
-        
-} catch (IOException e){
-    e.printStackTrace();
-};
+                MuseumJD.add(anchorPaneMuseumE, columnWonderE++, rowWonderE);
+                GridPane.setMargin(anchorPaneMuseumE, new Insets(10));
+            }
+        }
+        scrollJD.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
+        scrollJG.setStyle("-fx-background: transparent; -fx-background-color: transparent; "); 
+    } catch (IOException e){
+        e.printStackTrace();
+    };
+        }
     }
-}

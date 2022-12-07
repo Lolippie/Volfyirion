@@ -24,6 +24,7 @@ public class CityController {
     @FXML
     void setBuilding(MouseEvent event) {
         if (event.isPrimaryButtonDown()){
+            myListenerCity.onClickListener(thisCity);
             int i =0;
             if (thisCity.getBuilding() == null) {
                 while ( i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size() -1) && !(this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))) {
@@ -42,6 +43,7 @@ public class CityController {
     void setProtector(MouseEvent event) {
         int i =0;
         if (event.isPrimaryButtonDown()){
+            myListenerCity.onClickListener(thisCity);
             if (thisCity.getProtector() == null) {
                 while (i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size()-1)  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
                     i++;
@@ -54,13 +56,19 @@ public class CityController {
             }
         }
         else if (event.isSecondaryButtonDown() && thisCity.getProtector() != null){
-            thisCity.getProtector().getBonusByDestruct(this.field.getField().getHisTurn());
-            this.thisCity.removeProtector();
-            buildingImg.setImage(null);
-            setData(thisCity, myListenerCity, field);
+            myListenerCity.onClickListener(thisCity);
+            if (thisCity.getProtector().getName() != "e_mecernary"){
+                thisCity.getProtector().getBonusByDestruct(this.field.getField().getHisTurn());
+                this.thisCity.removeProtector();
+                buildingImg.setImage(null);
+                setData(thisCity, myListenerCity, field);
+            }
+            else {
+                System.out.println("You can't destroy this protector !");
+            }
         }
     }
-
+    
     public void setData(City c,MyListenerCity myListener, Field_Creation f){
         this.thisCity = c;
         this.field = f;

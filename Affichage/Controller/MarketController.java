@@ -27,12 +27,14 @@ public class MarketController {
                         if (this.field.getField().getHisTurn().getCoin()>=thisCard.getCoin()){
                             this.field.getField().getHisTurn().setCoin(-thisCard.getCoin());
                             this.field.getField().getPlayer2().getDeckPlayer().addCardRest(thisCard);
+                            this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
                         }
                     }
                     else {
                         if (this.field.getField().getHisTurn().getCoin() >= thisCard.getCoin()){
                             this.field.getField().getHisTurn().setCoin(-thisCard.getCoin());
                             this.field.getField().getPlayer1().getDeckPlayer().addCardRest(thisCard);
+                            this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
                         }
                     }
                 }

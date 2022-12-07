@@ -33,13 +33,27 @@ public class CityEnnemyController {
 
     @FXML
     void attackBuilding(MouseEvent event) {
-        //check sur toutes la main et merveille si possible de l'effacer
+        if (event.isSecondaryButtonDown()){
+            myListenerCity.onClickListener(thisCity);
+            if(this.field.getField().getHisTurn().getCanDestroyBuilding()){
+                thisCity.removeBuilding();
+                this.field.getField().getHisTurn().setCanDestroyBuilding(false);
+            }
+            setData(thisCity, myListenerCity, field);
+        }
     }
 
     @FXML
     void attackProtector(MouseEvent event) {
-        //check sur toutes la main et merveille si possible de l'effacer
-
+        if (event.isSecondaryButtonDown()){
+            myListenerCity.onClickListener(thisCity);
+            if(this.field.getField().getHisTurn().getCanDestroyProtector()){
+                thisCity.removeProtector();
+                this.field.getField().getHisTurn().setCanDestroyProtector(false);
+            }
+            setData(thisCity, myListenerCity, field);
+        }
+        
     }
 
     public void setData(City c, MyListenerCity myListener, Field_Creation f){
