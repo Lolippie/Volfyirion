@@ -42,6 +42,7 @@ public class Field {
       this.p1.unmakeHand();
       this.p2.makeHand();
       this.p1.endTurnRessources();
+      this.p1.endTurnBonus();
       this.p1.setHisTurn(false);
       this.p2.setHisTurn(true);
       return p2;
@@ -49,6 +50,7 @@ public class Field {
       this.p2.unmakeHand();
       this.p1.makeHand();
       this.p2.endTurnRessources();
+      this.p2.endTurnBonus();
       this.p2.setHisTurn(false);
       this.p1.setHisTurn(true);
       return p1;
