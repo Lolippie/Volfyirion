@@ -38,9 +38,10 @@ public class Volfyirion {
 
   // ----------------------------------------------------------
   public void moveToCityFromHisPlace(City c, Player p) {
-    if (this.isAlive) {
+    if (this.isAlive && c.getIsStanding()) {
       if (p.getWisdom() >= 8) {
         c.setHasVolfyirion(true);
+        this.city = c;
         p.setWisdom(-8);
       } else {
         System.out.println("vous pouvez pas le deplacer, vos ressources sont insuffisantes.");
@@ -53,6 +54,7 @@ public class Volfyirion {
       if (p.getWisdom() >= 8) {
         p.setWisdom(-8);
         c.setHasVolfyirion(true);
+        this.city = c;
       } else {
         System.out.println("vous pouvez pas le deplacer vos ressources sont insuffisantes");
       }
@@ -64,12 +66,15 @@ public class Volfyirion {
 
   // ---------------------------------------------------------
   public void returnToHisPlace(Player p, City c) {
-    if (p.getWisdom() >= 8) {
+    if (c.getHasVolfyirion()){
+      if (p.getWisdom() >= 8) {
         c.setHasVolfyirion(false);
         p.setWisdom(-8);
-          this.city = null;
+        this.city = null;
       }
     }
+    }
+    
 
   // ------------------------------------------------------------
   public void destructCity(Player p) {

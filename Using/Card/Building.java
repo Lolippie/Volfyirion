@@ -157,7 +157,10 @@ public class Building extends Card implements Bonus, Buy_Card {
         for (int i = 0; i < Integer.valueOf(this.bonus.split("_")[3]); i++) {
           player.getDeckPlayer().addCardHand(player.getDeckPlayer().pickCardRest());
         }
-    }
+      }
+      else {
+        player.setCanDestroyCard(true);
+      }
   }
 }
 }
