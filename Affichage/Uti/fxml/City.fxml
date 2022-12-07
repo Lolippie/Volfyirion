@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="194.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Affichage.Controller.CityController">
+   <children>
+      <ImageView fx:id="city" fitHeight="139.0" fitWidth="203.0" layoutX="29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/city.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="21.0" layoutY="63.0" onMousePressed="#setProtector" prefHeight="126.0" prefWidth="90.0">
+         <children>
+            <ImageView fx:id="protectorImg" fitHeight="126.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="140.0" layoutY="63.0" onMousePressed="#setBuilding" prefHeight="110.0" prefWidth="76.0">
+         <children>
+            <ImageView fx:id="buildingImg" fitHeight="126.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
