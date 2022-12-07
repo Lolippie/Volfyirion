@@ -21,7 +21,7 @@ import Affichage.Main.MyListenerCard;
 import Affichage.Main.MyListenerCity;
 import Field.Player.City.*;
     
-public class Player1Controller {
+public class MainController {
     private Field_Creation field;
     private MyListenerCard myListenerCard;
     private MyListenerCity myListenerCity;

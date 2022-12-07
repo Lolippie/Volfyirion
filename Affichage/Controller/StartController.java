@@ -18,10 +18,10 @@ public class StartController implements Initializable{
     private AnchorPane root;
     @FXML
     public void start(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Uti/fxml/Player1.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Uti/fxml/Main.fxml"));
         root =  loader.load();
-        Player1Controller player1Controller = loader.getController();
-        player1Controller.setField(field);
+        MainController mainController = loader.getController();
+        mainController.setField(field);
         
         
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -10,7 +10,7 @@
       <BorderPane prefHeight="117.0" prefWidth="83.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="39.0" AnchorPane.topAnchor="0.0" />
       <ImageView fx:id="Card" fitHeight="161.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-11.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../img/Sans%20titre.png" />
+            <Image url="@../img/empty_card.jpg" />
          </image>
       </ImageView>
    </children>

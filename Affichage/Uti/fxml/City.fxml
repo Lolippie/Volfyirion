@@ -8,17 +8,23 @@
    <children>
       <ImageView fx:id="city" fitHeight="155.0" fitWidth="207.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/city.jpg" />
+            <Image url="@../img/volf_lair.jpg" />
          </image>
       </ImageView>
       <AnchorPane layoutX="7.0" layoutY="63.0" onMousePressed="#setProtector" prefHeight="140.0" prefWidth="104.0">
          <children>
-            <ImageView fx:id="protectorImg" fitHeight="140.0" fitWidth="104.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="protectorImg" fitHeight="140.0" fitWidth="104.0" layoutX="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/empty_card.jpg" />
+               </image></ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="140.0" layoutY="63.0" onMousePressed="#setBuilding" prefHeight="110.0" prefWidth="76.0">
          <children>
-            <ImageView fx:id="buildingImg" fitHeight="140.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="buildingImg" fitHeight="140.0" fitWidth="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/empty_card.jpg" />
+               </image></ImageView>
          </children>
       </AnchorPane>
    </children>
