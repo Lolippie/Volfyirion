@@ -114,132 +114,191 @@ public class MainController {
                 }
             }
             else if (field.getField().getHisTurn() == field.getField().getPlayer2()){
-                if (field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(2), field.getField().getHisTurn())){
-                    initialPlaceVolfy.setImage(null);
-                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-                    volfyOnCity10JD.setImage(imageprot);
-                };
+                boolean oneCityGotVolfyirion = false;
+                for (City c : field.getField().getHisTurn().getCities()){
+                    if(c.getHasVolfyirion()){
+                        oneCityGotVolfyirion = true;
+                    }
+                }
+                if (oneCityGotVolfyirion && field.getField().moveVolfyirionCityToCity(field.getField().getPlayer2().getCities().get(2), field.getField().getHisTurn())){
+                    volfyOnCity8JG.setImage(null);
+                    volfyOnCity9JG.setImage(null);
+                    volfyOnCity10JG.setImage(null);
+                } 
+                else if (field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(2), field.getField().getHisTurn())){
+                        initialPlaceVolfy.setImage(null);
+                        Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                        volfyOnCity10JD.setImage(imageprot);
+                }    
             }
-        } else {
-            if(volfyOnCity10JD.getImage()!= null){
-                volfyOnCity10JD.setImage(null);
-                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-                initialPlaceVolfy.setImage(imageprot);
-            }
-            
         }
     } 
+    
 
     @FXML
     void OnCity10JG(ActionEvent event) {
         if (field.getField().getPlayer2().getCities().get(2).getIsStanding()){
-        if (field.getField().getHisTurn() == field.getField().getPlayer2() && field.getField().getHisTurn().getCities().get(2).getHasVolfyirion()){
-            field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(2), field.getField().getHisTurn());
-            volfyOnCity10JG.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            initialPlaceVolfy.setImage(imageprot);
+            if (field.getField().getHisTurn() == field.getField().getPlayer2() && field.getField().getHisTurn().getCities().get(2).getHasVolfyirion()){
+                if (field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(2), field.getField().getHisTurn())){
+                    volfyOnCity10JG.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    initialPlaceVolfy.setImage(imageprot);
+                }
+                
+            }
+            else if (field.getField().getHisTurn() == field.getField().getPlayer1()){
+                boolean oneCityGotVolfyirion = false;
+                for (City c : field.getField().getHisTurn().getCities()){
+                    if(c.getHasVolfyirion()){
+                        oneCityGotVolfyirion = true;
+                    }
+                }
+                if (oneCityGotVolfyirion && field.getField().moveVolfyirionCityToCity(field.getField().getPlayer2().getCities().get(2), field.getField().getHisTurn())){
+                    volfyOnCity8JD.setImage(null);
+                    volfyOnCity9JD.setImage(null);
+                    volfyOnCity10JD.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity10JG.setImage(imageprot);
+                }else if (field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(2), field.getField().getHisTurn())){
+                    initialPlaceVolfy.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity10JG.setImage(imageprot);
+                }
+                
+            }
         }
-        else if (field.getField().getHisTurn() == field.getField().getPlayer1()){
-            field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(2), field.getField().getHisTurn());
-            initialPlaceVolfy.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            volfyOnCity10JG.setImage(imageprot);
-        }
-    } else {
-        volfyOnCity10JG.setImage(null);
-        Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-        initialPlaceVolfy.setImage(imageprot);
-    }
     }
 
     @FXML
     void OnCity8JD(ActionEvent event) {
         if (field.getField().getPlayer1().getCities().get(0).getIsStanding()){
             if (field.getField().getHisTurn() == field.getField().getPlayer1() && field.getField().getHisTurn().getCities().get(0).getHasVolfyirion()){
-                field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(0), field.getField().getHisTurn());
-                volfyOnCity8JD.setImage(null);
-                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-                initialPlaceVolfy.setImage(imageprot);
+                if(field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(0), field.getField().getHisTurn())){
+                    volfyOnCity8JD.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    initialPlaceVolfy.setImage(imageprot);
+                }
             }
             else if (field.getField().getHisTurn() == field.getField().getPlayer2()){
-                field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(0), field.getField().getHisTurn());
-                initialPlaceVolfy.setImage(null);
-                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-                volfyOnCity8JD.setImage(imageprot);
+                boolean oneCityGotVolfyirion = false;
+                for (City c : field.getField().getHisTurn().getCities()){
+                    if(c.getHasVolfyirion()){
+                        oneCityGotVolfyirion = true;
+                    }
+                }
+                if (oneCityGotVolfyirion && field.getField().moveVolfyirionCityToCity(field.getField().getPlayer1().getCities().get(0), field.getField().getHisTurn())){
+                    volfyOnCity8JG.setImage(null);
+                    volfyOnCity9JG.setImage(null);
+                    volfyOnCity10JG.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity8JD.setImage(imageprot);
+                }else if(field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(0), field.getField().getHisTurn())) {
+                    initialPlaceVolfy.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity8JD.setImage(imageprot);
+                }    
             }
-        } else {
-            volfyOnCity8JD.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            initialPlaceVolfy.setImage(imageprot);
         }
     }
+
 
     @FXML
     void OnCity8JG(ActionEvent event) {
         if (field.getField().getPlayer2().getCities().get(0).getIsStanding()){
-        if (field.getField().getHisTurn() == field.getField().getPlayer2() && field.getField().getHisTurn().getCities().get(0).getHasVolfyirion()){
-            field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(0), field.getField().getHisTurn());
-            volfyOnCity8JG.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            initialPlaceVolfy.setImage(imageprot);
+            if (field.getField().getHisTurn() == field.getField().getPlayer2() && field.getField().getHisTurn().getCities().get(0).getHasVolfyirion()){
+                if(field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(0), field.getField().getHisTurn())){
+                    volfyOnCity8JG.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    initialPlaceVolfy.setImage(imageprot); 
+                }
+            }
+            else if (field.getField().getHisTurn() == field.getField().getPlayer1()){
+                boolean oneCityGotVolfyirion = false;
+                for (City c : field.getField().getHisTurn().getCities()){
+                    if(c.getHasVolfyirion()){
+                        oneCityGotVolfyirion = true;
+                    }
+                }
+                if (oneCityGotVolfyirion && field.getField().moveVolfyirionCityToCity(field.getField().getPlayer2().getCities().get(0), field.getField().getHisTurn())){
+                    volfyOnCity8JD.setImage(null);
+                    volfyOnCity9JD.setImage(null);
+                    volfyOnCity10JD.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity8JG.setImage(imageprot);
+
+                } else if (field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(0), field.getField().getHisTurn())){
+                    initialPlaceVolfy.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity8JG.setImage(imageprot);
+                }
+            }
         }
-        else if (field.getField().getHisTurn() == field.getField().getPlayer1()){
-            field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(0), field.getField().getHisTurn());
-            initialPlaceVolfy.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            volfyOnCity8JG.setImage(imageprot);
-        }
-    } else {
-        volfyOnCity8JG.setImage(null);
-        Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-        initialPlaceVolfy.setImage(imageprot);
-    }
     }
 
     @FXML
     void OnCity9JD(ActionEvent event) {
         if (field.getField().getPlayer1().getCities().get(1).getIsStanding()){
-        if (field.getField().getHisTurn() == field.getField().getPlayer1() && field.getField().getHisTurn().getCities().get(1).getHasVolfyirion()){
-            field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(1), field.getField().getHisTurn());
-            volfyOnCity9JD.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            initialPlaceVolfy.setImage(imageprot);
+            if (field.getField().getHisTurn() == field.getField().getPlayer1() && field.getField().getHisTurn().getCities().get(1).getHasVolfyirion()){
+                if(field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(1), field.getField().getHisTurn())){
+                    volfyOnCity9JD.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    initialPlaceVolfy.setImage(imageprot);
+                }
+            }
+            else if (field.getField().getHisTurn() == field.getField().getPlayer2()){
+                boolean oneCityGotVolfyirion = false;
+                for (City c : field.getField().getHisTurn().getCities()){
+                    if(c.getHasVolfyirion()){
+                        oneCityGotVolfyirion = true;
+                    }
+                }
+                if(oneCityGotVolfyirion && field.getField().moveVolfyirionCityToCity(field.getField().getPlayer1().getCities().get(1), field.getField().getHisTurn())){
+                    volfyOnCity8JG.setImage(null);
+                    volfyOnCity9JG.setImage(null);
+                    volfyOnCity10JG.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity9JD.setImage(imageprot);
+                } else if( field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(1), field.getField().getHisTurn())){
+                    initialPlaceVolfy.setImage(null);
+                    Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                    volfyOnCity9JD.setImage(imageprot);
+                }
+            }
         }
-        else if (field.getField().getHisTurn() == field.getField().getPlayer2()){
-            field.getField().moveVolfyirionToCity(field.getField().getPlayer1().getCities().get(1), field.getField().getHisTurn());
-            initialPlaceVolfy.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            volfyOnCity9JD.setImage(imageprot);
-        }
-    } else {
-        volfyOnCity9JD.setImage(null);
-        Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-        initialPlaceVolfy.setImage(imageprot);
-    }
     }
 
     @FXML
     void OnCity9JG(ActionEvent event) {
         if (field.getField().getPlayer2().getCities().get(1).getIsStanding()){
             if (field.getField().getHisTurn() == field.getField().getPlayer2() && field.getField().getHisTurn().getCities().get(1).getHasVolfyirion()){
-            field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(1), field.getField().getHisTurn());
+           if (field.getField().moveVolfyirionToBase(field.getField().getHisTurn().getCities().get(1), field.getField().getHisTurn())){
             volfyOnCity9JG.setImage(null);
             Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
             initialPlaceVolfy.setImage(imageprot);
+           }
         }
         else if (field.getField().getHisTurn() == field.getField().getPlayer1()){
-            field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(1), field.getField().getHisTurn());
-            initialPlaceVolfy.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            volfyOnCity9JG.setImage(imageprot);
+            boolean oneCityGotVolfyirion = false;
+            for (City c : field.getField().getHisTurn().getCities()){
+                if(c.getHasVolfyirion()){
+                    oneCityGotVolfyirion = true;
+                }
+            }
+            if (oneCityGotVolfyirion &&  field.getField().moveVolfyirionCityToCity(field.getField().getPlayer2().getCities().get(1), field.getField().getHisTurn())){
+                volfyOnCity8JD.setImage(null);
+                volfyOnCity9JD.setImage(null);
+                volfyOnCity10JD.setImage(null);
+                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                volfyOnCity9JG.setImage(imageprot);
+            }
+            else if ( field.getField().moveVolfyirionToCity(field.getField().getPlayer2().getCities().get(1), field.getField().getHisTurn())){
+                initialPlaceVolfy.setImage(null);
+                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                volfyOnCity9JG.setImage(imageprot);
+            }
         }
-        } else {
-            volfyOnCity9JG.setImage(null);
-            Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
-            initialPlaceVolfy.setImage(imageprot);
-        }
-        
     }
+}
 
     @FXML
     void attackVolfyirion(MouseEvent event) {
@@ -249,6 +308,23 @@ public class MainController {
     @FXML
     void stopTurn(ActionEvent event) {
         this.field.getField().getNeutral().getVolfyirion().destructCity(this.field.getField().getHisTurn());
+        if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
+            if (volfyOnCity8JD.getImage()!=null || volfyOnCity9JD.getImage()!=null ||volfyOnCity10JD.getImage()!=null){
+                volfyOnCity8JD.setImage(null);
+                volfyOnCity9JD.setImage(null);
+                volfyOnCity10JD.setImage(null);
+                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                initialPlaceVolfy.setImage(imageprot);
+            }
+        } else{
+            if (volfyOnCity8JG.getImage()!=null || volfyOnCity9JG.getImage()!=null ||volfyOnCity10JG.getImage()!=null){
+                volfyOnCity8JG.setImage(null);
+                volfyOnCity9JG.setImage(null);
+                volfyOnCity10JG.setImage(null);
+                Image imageprot = new Image(getClass().getResourceAsStream("../Uti/img/Volfy.png"));
+                initialPlaceVolfy.setImage(imageprot);
+            }
+        }
         this.field.getField().endTurn();
         if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
             HandJG.getChildren().clear();
