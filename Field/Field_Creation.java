@@ -254,15 +254,7 @@ ArrayList<Card> market_pile = new ArrayList<Card>(Arrays.asList(barter_1, barter
   field.getPlayer1().getDeckPlayer().addCardRest(diviner_1);
   field.getPlayer2().getDeckPlayer().addCardRest(captain_2);
   field.getPlayer2().getDeckPlayer().addCardRest(diviner_2);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-  field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
 
-   field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
-   field.getPlayer1().getDeckPlayer().addCardRest(stab_1);
 
   
 
