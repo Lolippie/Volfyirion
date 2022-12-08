@@ -40,10 +40,14 @@ public class Volfyirion {
   public boolean moveToCityFromHisPlace(City c, Player p) {
     if (this.isAlive) {
       if (c.getIsStanding()){
-        if (p.getWisdom() >= 8) {
+        if (p.getWisdom() >= 8 || p.getCanMoveVolfyirion()) {
+          if (p.getCanMoveVolfyirion()){
+            p.setCanMoveVolfyirion(false);
+          } else {
+          p.setWisdom(-8);
+          }
           c.setHasVolfyirion(true);
           this.city = c;
-          p.setWisdom(-8);
           return true;
         } else {
           System.out.println("You can't move volfyirion, you don't have enought ressources");
@@ -61,10 +65,14 @@ public class Volfyirion {
   }
 
   public boolean moveToHisPlaceFromCity(City c, Player p) {
-    if (p.getWisdom() >= 8) {
+    if (p.getWisdom() >= 8 || p.getCanMoveVolfyirion()) {
       c.setHasVolfyirion(false);
       this.city = null;
-      p.setWisdom(-8);
+      if (p.getCanMoveVolfyirion()){
+        p.setCanMoveVolfyirion(false);
+      } else {
+        p.setWisdom(-8);
+      }
       return true;
     } else {
       System.out.println("You can't move volfyirion, you don't have enought ressources");

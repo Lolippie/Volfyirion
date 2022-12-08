@@ -3,6 +3,7 @@ package Affichage.Controller;
 import Affichage.Main.MyListenerCity;
 import Field.Field_Creation;
 import Field.Player.City.City;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,10 +26,9 @@ public class CityEnnemyController {
     private Field_Creation field;
 
     @FXML
-    void attack(MouseEvent event) {
-        if (event.isPrimaryButtonDown()){
-            this.field.getField().getHisTurn().attackCity(thisCity);
-        }
+    void attack(ActionEvent event) {
+        myListenerCity.onClickListener(thisCity);
+        this.field.getField().getHisTurn().attackCity(thisCity);
     }
 
     @FXML
@@ -38,8 +38,11 @@ public class CityEnnemyController {
             if(this.field.getField().getHisTurn().getCanDestroyBuilding()){
                 thisCity.removeBuilding();
                 this.field.getField().getHisTurn().setCanDestroyBuilding(false);
+                setData(thisCity, myListenerCity, field);
+            } else {
+                System.out.println("You can't do anything");
             }
-            setData(thisCity, myListenerCity, field);
+            
         }
     }
 
@@ -51,15 +54,16 @@ public class CityEnnemyController {
                 if(this.field.getField().getHisTurn().getCanDestroyProtector()){
                     thisCity.removeProtector();
                     this.field.getField().getHisTurn().setCanDestroyProtector(false);
+                    setData(thisCity, myListenerCity, field);
+                } 
+                else {                
+                    System.out.println("You can't do anything");
                 }
-                setData(thisCity, myListenerCity, field);
-            }
-            else {
-                System.out.println("This city is already defeated");
             }
         }
-        
-        
+        else {
+            System.out.println("This city is already defeated");
+        }
     }
 
     public void setData(City c, MyListenerCity myListener, Field_Creation f){

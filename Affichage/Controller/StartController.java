@@ -33,12 +33,10 @@ public class StartController implements Initializable{
 
     public void initialize(URL location, ResourceBundle resources){
         this.field = new Field_Creation();
-        System.out.println(this.field.getField().getNeutral().getVolfyirion().getName());
         this.field.getField().getNeutral().getMarket().shuffledCard();
         this.field.getField().getNeutral().getCave().shuffledCard();
         this.field.getField().getNeutral().makeMarket();
         this.field.getField().getNeutral().makeCave();
-        System.out.println(this.field.getField().getNeutral().getMarket().getMarket().get(0).getImgSrc());
     }
 
 }

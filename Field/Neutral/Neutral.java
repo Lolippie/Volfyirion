@@ -37,8 +37,12 @@ public class Neutral {
       for (int i = 0; i < wonders.size(); i++) {
         p.addWonder(wonders.get(i));
       }
-      this.volfyirion.getCity().setHasVolfyirion(false);
-      this.volfyirion.setCity(null);
+      if (this.volfyirion.getCity() == null){
+
+      } else {
+        this.volfyirion.getCity().setHasVolfyirion(false);
+        this.volfyirion.setCity(null);
+      }
       this.volfyirion.setIsAlive(false);
       this.cave.setIsActive(false);
       p.setAttack(-16);

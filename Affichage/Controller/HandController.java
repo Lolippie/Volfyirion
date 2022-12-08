@@ -18,6 +18,10 @@ public class HandController {
     void clickHand(MouseEvent event) {
         if (event.isSecondaryButtonDown()){
             myListenerCard.onClickListener(thisCard);
+            if (thisCard.getBonus() == "e_saboteur"){
+                System.out.println("You can't destory this card !");
+            }
+            else {
             if (this.field.getField().getHisTurn().getDeckPlayer().isProtector(thisCard) ){
                 this.field.getField().getHisTurn().getDeckPlayer().getProtectorFromCard(thisCard).getBonusByDestruct(this.field.getField().getHisTurn());
                 this.field.getField().getHisTurn().getDeckPlayer().removeCardHand(thisCard);
@@ -34,7 +38,7 @@ public class HandController {
             }
         }
     }
-
+    }
     public void setData(Card c, MyListenerCard myListener, Field_Creation f){
         this.thisCard = c;
         this.field = f;

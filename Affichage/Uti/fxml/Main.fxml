@@ -24,7 +24,7 @@
             <Image url="@../img/back.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="792.0" layoutY="441.0" onMousePressed="#attackVolfyirion" prefHeight="164.0" prefWidth="218.0">
+      <AnchorPane layoutX="821.0" layoutY="441.0" onMousePressed="#attackVolfyirion" prefHeight="164.0" prefWidth="218.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="221.0" layoutX="4.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -91,7 +91,7 @@
          </image></ImageView>
       <AnchorPane layoutX="568.0" layoutY="275.0" prefHeight="64.0" prefWidth="684.0">
          <children>
-            <Text fx:id="indication" layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="test" wrappingWidth="668.9999999999998">
+            <Text fx:id="indication" layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="668.9999999999998">
                <font>
                   <Font size="18.0" />
                </font>
@@ -99,33 +99,33 @@
          </children>
       </AnchorPane>
       <Button fx:id="stop" layoutX="831.0" layoutY="223.0" mnemonicParsing="false" onAction="#stopTurn" prefHeight="52.0" prefWidth="130.0" text="Stop Turn" />
-      <HBox layoutX="1119.0" layoutY="631.0" prefHeight="314.0" prefWidth="751.0">
+      <HBox layoutX="1110.0" layoutY="611.0" prefHeight="314.0" prefWidth="751.0">
          <children>
-            <Pane prefHeight="314.0" prefWidth="750.0">
-               <children>
+            <ScrollPane fx:id="scrollHandJD" prefHeight="314.0" prefWidth="1515.0">
+               <content>
                   <GridPane fx:id="HandJD" prefHeight="150.0" prefWidth="9.0">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                      </rowConstraints>
                   </GridPane>
-               </children>
-            </Pane>
+               </content>
+            </ScrollPane>
          </children>
       </HBox>
       <HBox layoutX="5.0" layoutY="631.0" prefHeight="314.0" prefWidth="739.0">
          <children>
-            <Pane prefHeight="314.0" prefWidth="750.0">
-               <children>
+            <ScrollPane fx:id="scrollHandJG" prefHeight="314.0" prefWidth="1515.0">
+               <content>
                   <GridPane fx:id="HandJG" prefHeight="150.0" prefWidth="9.0">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                      </rowConstraints>
                   </GridPane>
-               </children>
-            </Pane>
+               </content>
+            </ScrollPane>
          </children>
       </HBox>
-      <HBox layoutX="1.0" layoutY="396.0" prefHeight="190.0" prefWidth="759.0">
+      <HBox layoutX="1.0" layoutY="381.0" prefHeight="190.0" prefWidth="759.0">
          <children>
             <Pane prefHeight="190.0" prefWidth="760.0">
                <children>
@@ -156,7 +156,7 @@
             </Pane>
          </children>
       </HBox>
-      <HBox layoutX="779.0" layoutY="507.0" prefHeight="124.0" prefWidth="234.0">
+      <HBox layoutX="795.0" layoutY="514.0" prefHeight="124.0" prefWidth="234.0">
          <children>
             <GridPane fx:id="cave" prefHeight="33.0" prefWidth="15.0">
                <rowConstraints>
@@ -166,9 +166,9 @@
          </children>
       </HBox>
       <Button layoutX="840.0" layoutY="912.0" mnemonicParsing="false" onAction="#refreshRessources" text="refresh ressources" />
-    <Button layoutX="115.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity8JG" text="here" />
-    <Button layoutX="340.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity9JG" text="here" />
-      <Button layoutX="572.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity10JG" text="here" />
+    <Button layoutX="109.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity8JG" text="here" />
+    <Button layoutX="361.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity9JG" text="here" />
+      <Button layoutX="624.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity10JG" text="here" />
       <Button layoutX="1206.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity8JD" text="here" />
       <Button layoutX="1465.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity9JD" text="here" />
       <Button layoutX="1713.0" layoutY="355.0" mnemonicParsing="false" onAction="#OnCity10JD" text="here" />

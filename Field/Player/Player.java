@@ -25,7 +25,7 @@ public class Player {
   private Deck deckPlayer;
   private boolean killedVolfyirion;
   private ArrayList<City> cities;
-  private boolean canDestroyBuilding, canDestroyProtector, canDestroyCard, canMoveVolfyirion;
+  private boolean canDestroyBuilding, canDestroyProtector, canDestroyCard, canMoveVolfyirion, canDrawOne, canDrawTwo;
   private ArrayList<Wonder> museum; // le musée : les merveilles que le joueur possède (actives ou non)
 
   public Player(IdPlayer idPlayer, Boolean bool, String name, City city8, City city9, City city10, ArrayList<Protector> protectors,
@@ -42,6 +42,8 @@ public class Player {
     this.canDestroyProtector = false;
     this.canDestroyCard = false; 
     this.canMoveVolfyirion = false;
+    this.canDrawOne = false;
+    this.canDrawTwo = false;
   }
 
   public void setKilledVolfyirion(boolean b){
@@ -52,7 +54,6 @@ public class Player {
   }
   public boolean getCanDestroyProtector(){
     return this.canDestroyProtector;
-
   }
   public boolean getCanDestroyCard(){
     return this.canDestroyCard;
@@ -60,6 +61,22 @@ public class Player {
   }
   public boolean getCanMoveVolfyirion(){
     return this.canMoveVolfyirion;
+
+  }
+  public void setCanDrawOne(boolean b){
+    this.canDrawOne = b;
+
+  }
+  public void setCanDrawTwo(boolean b){
+    this.canDrawTwo = b;
+
+  }
+  public boolean getCanDrawOne(){
+    return this.canDrawOne;
+
+  }
+  public boolean getCanDrawTwo(){
+    return this.canDrawTwo;
 
   }
   public void setCanDestroyBuilding(boolean b){
@@ -140,19 +157,28 @@ public void setHisTurn(boolean b){
 
   }
   public void attackCity(City c){
-    if (c.getProtector() != null && getAttack() >= c.defenceValue()){
-      if (c.getProtector().getBonus() == "e_mercenary" && c.getBuilding() != null){
+    if (c.getIsStanding()){
+      if (c.getProtector() != null && getAttack() >= c.defenceValue()){
+        if (c.getProtector().getBonus() == "e_mercenary" && c.getBuilding() != null){
+            c.removeBuilding();
+        }
+        this.ressources.setAttack(-c.defenceValue());
+        c.removeProtector();
+        System.out.println("You kill the Protector ");
+      } 
+      else if(getAttack() >= c.defenceValue()) {
+        this.ressources.setAttack(-c.defenceValue());
+        if (c.getBuilding() != null){
           c.removeBuilding();
-      }
-      this.ressources.setAttack(-c.defenceValue());
-      c.removeProtector();
-    } 
-    else if(getAttack() >= c.defenceValue()) {
-      this.ressources.setAttack(-c.defenceValue());
-      if (c.getBuilding() != null){
-        c.removeBuilding();
-      }
+        }
         c.setIsStanding(false);
+        System.out.println("You defeat " + c.getCityName() + " ! ");
+      } else {
+        System.out.println("You don't have enought attack to defeat this city");
+      }
+    }
+    else {
+      System.out.println("This city has already been defeated");
     }
   }
   public int getAttack() {
@@ -190,7 +216,19 @@ public void setHisTurn(boolean b){
       card = this.deckPlayer.pickCardRest();
       this.deckPlayer.addCardHand(card);
     }
+    if (canDrawOne){
+      card = this.deckPlayer.pickCardRest();
+      this.deckPlayer.addCardHand(card);
+      canDrawOne=false;
+    }
+    if (canDrawTwo){
+      card = this.deckPlayer.pickCardRest();
+      this.deckPlayer.addCardHand(card);
+      card = this.deckPlayer.pickCardRest();
+      this.deckPlayer.addCardHand(card);
+      canDrawTwo=false;
 
+    }
   }
 
   public void unmakeHand() {
@@ -226,6 +264,7 @@ public void setHisTurn(boolean b){
   public boolean buyWonder(Wonder w) {
     if (w.buyCard(this)) {
       this.museum.add(w);
+      this.canDestroyCard = true;
       return true;
     } else {
       return false;
@@ -264,7 +303,7 @@ public void setHisTurn(boolean b){
     if (this.deckPlayer.isProtector(c)) {
       if (city.haveProtector() == false) {
         Protector p = this.deckPlayer.getProtectorFromCard(c);
-        this.cities.get(this.cities.indexOf(city)).addProtector(p);
+        city.addProtector(p);
         this.deckPlayer.removeCardHand(c);
         
       } else {
@@ -283,9 +322,10 @@ public void setHisTurn(boolean b){
   public void addBuildingCity(Card c, City city) {
     if (this.deckPlayer.isBuilding(c)) {
       if (city.haveBuilding() == false) {
-        this.deckPlayer.removeCardHand(c);
         Building b = this.deckPlayer.getBuildingFromCard(c);
-        this.cities.get(this.cities.indexOf(city)).addBuilding(b);
+        city.addBuilding(b);        
+        this.deckPlayer.removeCardHand(c);
+
       } else {
         System.out.println("You already have a building on your city !");
       }

@@ -49,11 +49,17 @@ public class MarketController {
         }
         if (event.isSecondaryButtonDown()){
             myListenerCard.onClickListener(thisCard);
-            if (this.field.getField().getHisTurn().getWisdom() >= 2){
-                this.field.getField().getHisTurn().setWisdom(-2);
-                this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
-                thisCard = this.field.getField().getNeutral().getMarket().randomCard();
-                setData(thisCard, myListenerCard, field);
+            if (!alreadyBought){
+                if (this.field.getField().getHisTurn().getWisdom() >= 2){
+                    this.field.getField().getHisTurn().setWisdom(-2);
+                    this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
+                    thisCard = this.field.getField().getNeutral().getMarket().randomCard();
+                    this.field.getField().getNeutral().getMarket().addCardMarket(thisCard);
+                    setData(thisCard, myListenerCard, field);
+                }
+            }
+            else{
+                System.out.println("You can't remove a card that you bought");
             }
         }
     }

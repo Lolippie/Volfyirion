@@ -51,7 +51,12 @@ public class Wonder extends Card implements Buy_Card {
     else if (firstStep.equals("card")) {
       String secondStep = this.bonus.split("_")[2];
       if (secondStep.equals("draw")) {
-        player.getDeckPlayer().addCardHand(player.getDeckPlayer().pickCardRest());
+        if(Integer.valueOf(this.bonus.split("_")[3]) == 1){
+          player.setCanDrawOne(true);
+        }
+        else {
+          player.setCanDrawTwo(true);
+        }
       }
       else {
         player.setCanDestroyCard(true);

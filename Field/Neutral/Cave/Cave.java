@@ -68,5 +68,6 @@ public class Cave implements Shuffle {
      
     }
     this.wonders_pile = wondersCave; 
+    System.out.println("Shuffled Card Cave");
   }
 }

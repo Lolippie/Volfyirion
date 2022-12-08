@@ -25,7 +25,7 @@ public class MainController {
     private Field_Creation field;
     private MyListenerCard myListenerCard;
     private MyListenerCity myListenerCity;
-    
+    private boolean caveClear = false;
     @FXML
     private Text Attack;
 
@@ -102,6 +102,12 @@ public class MainController {
 
     @FXML
     private ImageView volfyOnCity9JG;
+    
+    @FXML
+    private ScrollPane scrollHandJD;
+
+    @FXML
+    private ScrollPane scrollHandJG;
 
     @FXML
     void OnCity10JD(ActionEvent event) {
@@ -416,6 +422,8 @@ public class MainController {
                 HandJG.add(anchorPaneHand, columnHand++, rowHand);
                 }
                 GridPane.setMargin(anchorPaneHand, new Insets(10));
+                scrollHandJG.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
+                scrollHandJD.setStyle("-fx-background: transparent; -fx-background-color: transparent; ");
             };
         } catch (IOException e){
             e.printStackTrace();
@@ -442,6 +450,7 @@ public class MainController {
 
 
         try {
+
             // ----------------------------------------------------------------------------------------------
             //                                  Cave
             if (this.field.getField().getNeutral().getCave().getIsActive()){
@@ -457,8 +466,11 @@ public class MainController {
                     GridPane.setMargin(anchorPaneCave, new Insets(10));
                 }
             }
-            else {
+            else if(caveClear){
                 indication.setText("Volfyirion is dead");
+            } else {
+                cave.getChildren().clear();
+                caveClear = true;
             }
         } catch (IOException e){
             e.printStackTrace();

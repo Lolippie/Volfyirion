@@ -107,7 +107,6 @@ public class Field {
   }
 
   public void attackVolfyirion(Player p){
-    
     if (this.neutralField.getVolfyirion().getIsAlive()){
       if (p.getAttack() >= 16){
         this.neutralField.volfyirionDead(p);

@@ -28,21 +28,22 @@ public class CityController {
             if (thisCity.getIsStanding()){
                 int i =0;
                 if (thisCity.getBuilding() == null) {
-                    while ( i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size() -1) && !(this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))) {
+                    while ( i != (this.field.getField().getHisTurn().getDeckPlayer().getHand().size() ) && !(this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))) {
                         i++;
+                        System.out.println(i);
                     }
-                    if (this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
-
+                    if ( i != (this.field.getField().getHisTurn().getDeckPlayer().getHand().size())){
                         this.field.getField().getHisTurn().addBuildingCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
                         setData(thisCity, myListenerCity, field);
                     }
                 }
             }
-            else {
-                System.out.println("You can't add a building, this city is defeated");
-            }
+        }
+        else {
+            System.out.println("You can't add a building, this city is defeated");
         }
     }
+    
 
     @FXML
     void setProtector(MouseEvent event) {
@@ -51,10 +52,10 @@ public class CityController {
             myListenerCity.onClickListener(thisCity);
             if (thisCity.getIsStanding()){
                 if (thisCity.getProtector() == null) {
-                    while (i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size()-1)  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
+                    while (i != (this.field.getField().getHisTurn().getDeckPlayer().getHand().size())  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
                         i++;
                     }
-                    if (this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
+                    if ( i !=(this.field.getField().getHisTurn().getDeckPlayer().getHand().size())){
                         this.field.getField().getHisTurn().addProtectorCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
                         setData(thisCity, myListenerCity, field);
                     }

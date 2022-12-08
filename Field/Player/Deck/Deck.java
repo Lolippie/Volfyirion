@@ -140,7 +140,7 @@ public class Deck implements Shuffle {
       cardsRest.add(removedCard);
     }
     this.rest = cardsRest;
-    System.out.println("Shuffled Cards" + cardsRest);
+    System.out.println("Shuffled Cards Rest");
   }
 
   public Card pickCardRest() {

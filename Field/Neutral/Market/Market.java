@@ -40,7 +40,7 @@ public class Market implements Shuffle {
       marketCards.add(removedCard);
     }
     this.market_pile = marketCards;
-    System.out.println("Shuffled Cards");
+    System.out.println("Shuffled Cards Market");
   }
 
   public void makeMarket() {
@@ -65,4 +65,7 @@ public class Market implements Shuffle {
     this.market.remove(c);
   }
 
+  public void addCardMarket(Card c){
+    this.market.add(c);
+  }
 }
