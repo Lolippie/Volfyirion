@@ -37,43 +37,46 @@ public class Volfyirion {
   }
 
   // ----------------------------------------------------------
-  public void moveToCityFromHisPlace(City c, Player p) {
-    if (this.isAlive && c.getIsStanding()) {
-      if (p.getWisdom() >= 8) {
-        c.setHasVolfyirion(true);
-        this.city = c;
-        p.setWisdom(-8);
-      } else {
-        System.out.println("vous pouvez pas le deplacer, vos ressources sont insuffisantes.");
-      }
-    }
-  }
-
-  public void moveToCity(City c, Player p) {
+  public boolean moveToCityFromHisPlace(City c, Player p) {
     if (this.isAlive) {
-      if (p.getWisdom() >= 8) {
-        p.setWisdom(-8);
-        c.setHasVolfyirion(true);
-        this.city = c;
+      if (c.getIsStanding()){
+        if (p.getWisdom() >= 8) {
+          c.setHasVolfyirion(true);
+          this.city = c;
+          p.setWisdom(-8);
+          return true;
+        } else {
+          System.out.println("You can't move volfyirion, you don't have enought ressources");
+          return false;
+        }
       } else {
-        System.out.println("vous pouvez pas le deplacer vos ressources sont insuffisantes");
+        System.out.println("This city has already fallen");
+        return false;
       }
-    } else {
-      System.out.println("Volfyirion is dead, you can't move it");
     }
-
+    else {
+      System.out.println("Volfyirion is dead, you can't move it");
+      return false;
+    }
   }
 
+  public boolean moveToHisPlaceFromCity(City c, Player p) {
+    if (p.getWisdom() >= 8) {
+      c.setHasVolfyirion(false);
+      this.city = null;
+      p.setWisdom(-8);
+      return true;
+    } else {
+      System.out.println("You can't move volfyirion, you don't have enought ressources");
+      return false;
+    }
+  }
   // ---------------------------------------------------------
-  public void returnToHisPlace(Player p, City c) {
-    if (c.getHasVolfyirion()){
-      if (p.getWisdom() >= 8) {
-        c.setHasVolfyirion(false);
-        p.setWisdom(-8);
-        this.city = null;
-      }
-    }
-    }
+  public void returnToHisPlace(City c) {
+    this.city = null;
+    city.setHasVolfyirion(false);
+  }
+    
     
 
   // ------------------------------------------------------------
@@ -81,14 +84,16 @@ public class Volfyirion {
     for (City c : p.getCities()) {
       if (c.getHasVolfyirion() == true) {
         System.out.println("Your City " + c.getCityName() + " has follen :");
-        p.getCities().remove(c);
+        c.setIsStanding(false);
+        c.removeBuilding();
+        c.removeProtector();
+        this.city = null;
       }
     }
   }
 
   // ------------------------------------------------------------
-  public void moveToCityEnnemie(Player p, City c) {
-    this.returnToHisPlace(p, c);
-    this.moveToCityFromHisPlace(c, p);
+  public boolean moveToCityEnnemie(Player p, City c) {
+    return moveToHisPlaceFromCity(this.city, p) && moveToCityFromHisPlace(c, p);
   }
 }

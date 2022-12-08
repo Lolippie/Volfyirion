@@ -33,6 +33,7 @@ public class CaveController {
                 System.out.println("You can't bought this card 2 times in a row");
             }
         }
+        
         else {
             System.out.println("Volfyirion is dead !");
         }

@@ -272,7 +272,7 @@ public void setHisTurn(boolean b){
   }
 
   public void removeProtectorCity(City city) {
-    this.cities.get(this.cities.indexOf(city)).removeProtector();
+    city.removeProtector();
   }
 
   // Batiments villes
@@ -291,7 +291,7 @@ public void setHisTurn(boolean b){
   }
 
   public void removeBuidling(City city) {
-    this.cities.get(this.cities.indexOf(city)).removeBuilding();
+    city.removeBuilding();
   }
 
   public void killVolfyirion(Volfyirion v) {

@@ -25,16 +25,21 @@ public class CityController {
     void setBuilding(MouseEvent event) {
         if (event.isPrimaryButtonDown()){
             myListenerCity.onClickListener(thisCity);
-            int i =0;
-            if (thisCity.getBuilding() == null) {
-                while ( i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size() -1) && !(this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))) {
-                    i++;
-                }
-                if (this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
+            if (thisCity.getIsStanding()){
+                int i =0;
+                if (thisCity.getBuilding() == null) {
+                    while ( i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size() -1) && !(this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))) {
+                        i++;
+                    }
+                    if (this.field.getField().getHisTurn().getDeckPlayer().isBuilding(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i))){
 
-                    this.field.getField().getHisTurn().addBuildingCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
-                    setData(thisCity, myListenerCity, field);
+                        this.field.getField().getHisTurn().addBuildingCity(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i), thisCity);
+                        setData(thisCity, myListenerCity, field);
+                    }
                 }
+            }
+            else {
+                System.out.println("You can't add a building, this city is defeated");
             }
         }
     }
@@ -45,7 +50,6 @@ public class CityController {
         if (event.isPrimaryButtonDown()){
             myListenerCity.onClickListener(thisCity);
             if (thisCity.getIsStanding()){
-                
                 if (thisCity.getProtector() == null) {
                     while (i < (this.field.getField().getHisTurn().getDeckPlayer().getHand().size()-1)  &&!(this.field.getField().getHisTurn().getDeckPlayer().isProtector(this.field.getField().getHisTurn().getDeckPlayer().getHand().get(i)))  ) {
                         i++;
@@ -64,10 +68,10 @@ public class CityController {
         }
         else if (event.isSecondaryButtonDown() && thisCity.getProtector() != null){
             myListenerCity.onClickListener(thisCity);
-            if (thisCity.getProtector().getName() != "e_mecernary"){
+            if (thisCity.getProtector().getBonus() != "e_mecernary"){
                 thisCity.getProtector().getBonusByDestruct(this.field.getField().getHisTurn());
                 this.thisCity.removeProtector();
-                buildingImg.setImage(null);
+                protectorImg.setImage(null);
                 setData(thisCity, myListenerCity, field);
             }
             else {

@@ -74,24 +74,32 @@ public class Field {
     }
   }
 
-  public void attackCity(City city, Player attack, Player defense) {
-    if ((defense.getCities().get(defense.getCities().indexOf(city)).defenceValue()) > attack.getAttack()) {
+  public void attackCity(City city, Player attack) {
+    if (city.defenceValue() > attack.getAttack()) {
       System.out.println("You don't have enough attack to attack this city");
-    } else if (defense.getCities().get(defense.getCities().indexOf(city)).haveProtector()) {
-      defense.getCities().get(defense.getCities().indexOf(city)).removeProtector();
-      attack.setAttack(-(defense.getCities().get(defense.getCities().indexOf(city)).getDefense()));
+    } else if (city.haveProtector()) {
+      if (city.getProtector().getBonus() != "e_mercenary"){
+        attack.setAttack(-city.defenceValue());
+        city.removeProtector();
+      }
+      else {
+        attack.setAttack(-city.defenceValue());
+        city.removeProtector();
+        city.removeBuilding();
+      }
     } else {
-      attack.setAttack(-defense.getCities().get(defense.getCities().indexOf(city)).getDefense());
-      defense.getCities().remove(city);
+      attack.setAttack(-city.defenceValue());
+      city.setIsStanding(false);;
+      city.removeBuilding();
     }
   }
 
-  public void moveVolfyirionToCity(City c, Player p) {
-    this.neutralField.getVolfyirion().moveToCity(c, p);
+  public boolean moveVolfyirionToCity(City c, Player p) {
+    return this.neutralField.getVolfyirion().moveToCityFromHisPlace(c, p);
   }
 
-  public void moveVolfyirionToBase(City c, Player p) {
-    this.neutralField.getVolfyirion().returnToHisPlace(p, c);
+  public boolean moveVolfyirionToBase(City c, Player p) {
+    return this.neutralField.getVolfyirion().moveToHisPlaceFromCity(c, p);
   }
 
   public void moveVolfyirionCityToCity(City c, Player p) {
@@ -99,11 +107,18 @@ public class Field {
   }
 
   public void attackVolfyirion(Player p){
-    if (p.getAttack() >= 16){
-      this.neutralField.volfyirionDead(p);
+    
+    if (this.neutralField.getVolfyirion().getIsAlive()){
+      if (p.getAttack() >= 16){
+        this.neutralField.volfyirionDead(p);
+      }
+      else {
+      System.out.println("You don't have enought attack to defeat Volfyirion");
+      }
     }
     else {
-      System.out.println("You don't have enought attakc to defeat Volfyirion");
+      System.out.println("Volfyirion is already dead");
+
     }
   }
 }
