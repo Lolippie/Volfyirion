@@ -42,6 +42,8 @@ public class Neutral {
       this.volfyirion.setIsAlive(false);
       this.cave.setIsActive(false);
       p.setAttack(-16);
+      p.setKilledVolfyirion(true);
+  
     }
   
     // fonction pour marché

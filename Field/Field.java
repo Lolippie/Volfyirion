@@ -102,8 +102,8 @@ public class Field {
     return this.neutralField.getVolfyirion().moveToHisPlaceFromCity(c, p);
   }
 
-  public void moveVolfyirionCityToCity(City c, Player p) {
-    this.neutralField.getVolfyirion().moveToCityEnnemie(p, c);
+  public boolean moveVolfyirionCityToCity(City c, Player p) {
+    return this.neutralField.getVolfyirion().moveToCityEnnemie(p, c);
   }
 
   public void attackVolfyirion(Player p){

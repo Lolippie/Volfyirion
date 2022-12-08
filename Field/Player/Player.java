@@ -43,6 +43,10 @@ public class Player {
     this.canDestroyCard = false; 
     this.canMoveVolfyirion = false;
   }
+
+  public void setKilledVolfyirion(boolean b){
+    this.killedVolfyirion = b;
+  }
   public boolean getCanDestroyBuilding(){
     return this.canDestroyBuilding;
   }
