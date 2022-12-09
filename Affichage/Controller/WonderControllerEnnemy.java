@@ -22,7 +22,9 @@ public class WonderControllerEnnemy {
             myListenerCard.onClickListener(wonder);
             if(!wonder.getIsLock()){
                 wonder.setLock(true, this.field.getField().getHisTurn());
-                img.setRotate(90);
+                if (wonder.getIsLock()){
+                    img.setRotate(90);
+                }
             }
         }
     }

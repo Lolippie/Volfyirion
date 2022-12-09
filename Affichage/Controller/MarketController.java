@@ -24,15 +24,15 @@ public class MarketController {
             if (!alreadyBought){
                 if (thisCard.getName() == "Saboteur"){
                     if (this.field.getField().getHisTurn() == this.field.getField().getPlayer1()){
-                        if (this.field.getField().getHisTurn().getCoin()>=thisCard.getCoin()){
-                            this.field.getField().getHisTurn().setCoin(-thisCard.getCoin());
+                        if (this.field.getField().getHisTurn().getCoin()>=thisCard.getCost()){
+                            this.field.getField().getHisTurn().setCoin(-thisCard.getCost());
                             this.field.getField().getPlayer2().getDeckPlayer().addCardRest(thisCard);
                             this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
                         }
                     }
                     else {
-                        if (this.field.getField().getHisTurn().getCoin() >= thisCard.getCoin()){
-                            this.field.getField().getHisTurn().setCoin(-thisCard.getCoin());
+                        if (this.field.getField().getHisTurn().getCoin() >= thisCard.getCost()){
+                            this.field.getField().getHisTurn().setCoin(-thisCard.getCost());
                             this.field.getField().getPlayer1().getDeckPlayer().addCardRest(thisCard);
                             this.field.getField().getNeutral().getMarket().removeCardMarket(thisCard);
                         }

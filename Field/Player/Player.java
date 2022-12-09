@@ -139,6 +139,13 @@ public void setHisTurn(boolean b){
         setCoin(w.getCoin());
       }
     }
+    for (City c : this.citites){
+      if (c.getBuilding() != null){
+        setAttack(c.getBuilding().getAttack());
+        setWisdom(c.getBuilding().getWisdom());
+        setCoin(c.getBuilding().getCoin());
+      }
+    }
     this.getComboOfBuildings(this);
     this.getComboOfNormals(this);
   }
@@ -149,6 +156,7 @@ public void setHisTurn(boolean b){
     this.ressources.resetWisdom();
     this.ressources.resetCoin();
   }
+  
   public void endTurnBonus(){
     this.canDestroyBuilding = false;
     this.canDestroyProtector = false;
@@ -354,6 +362,13 @@ public void setHisTurn(boolean b){
     for (Building bui : buildings) {
       if (bui.comboIsActive(colors)) {
         bui.getBonusByCombo(this);
+      }
+    }
+    for (City c : p.getCities()){
+      if (c.getBuilding() != null){
+        if(c.getBuilding().comboIsActive(colors)){
+          c.getBuilding().getBonusByCombo(this);
+        }
       }
     }
   }
