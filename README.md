@@ -13,6 +13,7 @@ Pour ce faire, le groupe dont j'étais la chef de projet a pris la décision de 
 ## Les règles du jeu
 
 [Les règles du jeu officielles](https://www.play-in.com/pdf/rules_games/volfyirion_regles_fr.pdf)
+
 Notre projet avait pour but de se rapprocher le plus possible des règles actuelles, à quelques details prêt (nous ne pouvons pas réparer les villes par exemple). 
 
 Pour rapide résumé du jeu :
