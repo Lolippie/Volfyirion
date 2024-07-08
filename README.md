@@ -1,14 +1,16 @@
-# POO
+# Volfyrion
 
 
 
-## Getting started
+## L'origine
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Ce code avait pour but de mettre en situation les cours appris en deuxième année de Licence Informatique. Il s'agissait donc d'appliquer des classes, l'héritage, les interfaces 
+et utiliser les fonctions/procédures pour relier le tout.
+Pour ce faire, le groupe dont j'étais la chef de projet a pris la décision de développer un jeu de société et d'utiliser le javaFX comme interface graphique pour mettre présenter
+ notre code et nos connaissances en java.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
+## Les règles du jeu
 
 - [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
 - [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
