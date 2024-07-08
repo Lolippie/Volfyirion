@@ -139,7 +139,7 @@ public void setHisTurn(boolean b){
         setCoin(w.getCoin());
       }
     }
-    for (City c : this.citites){
+    for (City c : this.cities){
       if (c.getBuilding() != null){
         setAttack(c.getBuilding().getAttack());
         setWisdom(c.getBuilding().getWisdom());
