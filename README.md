@@ -1,4 +1,4 @@
-# Volfyrion
+# Volfyirion
 
 
 
@@ -20,8 +20,8 @@ C'est un deck-building dont le but est de tuer son adversaire en détruisant ses
 
 - Des cartes de base vous sont mises en main, ces dernières vous donnent des ressources :
     - de l'argent qui permet d'acheter des cartes,
-    - de l'attaque qui permet d'acheter des merveilles, d'attaquer l'adversaire (ses villes) et de tuer Volfyrion,
-    - de l'intelligence qui permet de renouveler les cartes achetables, de désactiver les cartes de son adversaire et de déplacer Volfyrion.
+    - de l'attaque qui permet d'acheter des merveilles, d'attaquer l'adversaire (ses villes) et de tuer Volfyirion,
+    - de l'intelligence qui permet de renouveler les cartes achetables, de désactiver les cartes de son adversaire et de déplacer Volfyirion.
 - Lors de l'achat de cartes et de merveilles, ces dernières sont mises dans votre deck.
 - L'achat de merveilles permet de detruire une carte de votre main
 - Votre main vient de ce deck.

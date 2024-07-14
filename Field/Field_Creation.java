@@ -1,5 +1,4 @@
-// Je revendique ce replit au nom de Volfyrion.
-// Gloire à lui! \o/
+
 package Field;// Pour faciliter les choses les ressources sont dans l'ordre coin/attack/wisdom (autant que possible)
 import Field.Player.City.*;
 import java.util.ArrayList;
